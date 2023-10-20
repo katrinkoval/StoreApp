@@ -15,6 +15,7 @@ namespace StoreApp_DB_
             _storeDB = storeDB;
 
             InitializeComponent();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -47,7 +48,10 @@ namespace StoreApp_DB_
             AddColumnsToDgvConsigments();
             AddConsignmentsToDGV();
             AddColumnsToDgvOrders();
-            AddOrdersToDGV();
+            AddConsignmentOrdersToDGV(int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString()));
+
+            showOrdersComboBox.SelectedIndex = 0;
+
         }
 
         private void AddColumnsToDgvConsigments()
@@ -94,7 +98,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void AddConsignmentOrders(int consigmentNumber)
+        private void AddConsignmentOrdersToDGV(int consigmentNumber)
         {
             dvgOrders.Rows.Clear();
 
@@ -105,7 +109,9 @@ namespace StoreApp_DB_
             }
         }
 
-       
+
+        #region === CRUD Consignments ===
+
         private void updateConsignment_Click(object sender, EventArgs e)
         {
             int number = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
@@ -123,7 +129,6 @@ namespace StoreApp_DB_
             if (updateForm.ShowDialog() == DialogResult.OK)
             {
                 AddConsignmentsToDGV();
-                AddOrdersToDGV();
             }
         }
 
@@ -134,7 +139,17 @@ namespace StoreApp_DB_
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 AddConsignmentsToDGV();
-                AddOrdersToDGV();
+
+                dgvConsignments.Rows[dgvConsignments.Rows.Count - 1].Selected = true;
+
+                if (showOrdersComboBox.SelectedIndex == 0)
+                {
+                    dvgOrders.Rows.Clear();
+                }
+                else
+                {
+                    AddOrdersToDGV();
+                }
             }
 
         }
@@ -143,43 +158,31 @@ namespace StoreApp_DB_
         {
             int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
 
-            DeleteConsignmentForm deleteForm = new DeleteConsignmentForm(_storeDB, consignmentNumber);
+            string message = String.Format("Are you sure you want to delete consignment [{0}]?"
+                          , consignmentNumber);
 
-            if (deleteForm.ShowDialog() == DialogResult.OK)
+
+            if (!ConfirmDeleting(message))
+            {
+                return;
+            }
+
+            int result = _storeDB.DeleteConsignment(consignmentNumber);
+
+            HandleDeletingResult(result);
+
+            if (result == 0)
             {
                 AddConsignmentsToDGV();
-                AddOrdersToDGV();
+                FillOrdersDGV();
             }
         }
 
-        private void dgvConsignments_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int consignmentNumber = int.Parse(dgvConsignments.Rows[e.RowIndex].Cells[0].Value.ToString());
-            AddConsignmentOrders(consignmentNumber);
-        }
+
+        #endregion
 
 
-        private void showAllOrders_Click(object sender, EventArgs e)
-        {
-            AddOrdersToDGV();
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            _storeDB.closeConnection();
-
-            Close();
-        }
-
-        private void showAllOrders_MouseEnter(object sender, EventArgs e)
-        {
-            showAllOrders.BackColor = System.Drawing.Color.DarkOrange;
-        }
-
-        private void showAllOrders_MouseLeave(object sender, EventArgs e)
-        {
-            showAllOrders.BackColor = System.Drawing.Color.LightGray;
-        }
+        #region === CRUD Orders ===
 
         private void addOrderButton_Click(object sender, EventArgs e)
         {
@@ -189,21 +192,136 @@ namespace StoreApp_DB_
 
             if(addForm.ShowDialog() == DialogResult.OK)
             {
-                AddConsignmentsToDGV();
-                AddOrdersToDGV();
+                FillOrdersDGV();
             }
+        }
+
+        private void updateOrder_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(dvgOrders.CurrentRow.Cells[0].Value.ToString());
+            string productName = dvgOrders.CurrentRow.Cells[1].Value.ToString();
+            double amount = double.Parse(dvgOrders.CurrentRow.Cells[3].Value.ToString());
+            string unitType = dvgOrders.CurrentRow.Cells[4].Value.ToString();
+
+            UpdateOrderForm updateForm = new UpdateOrderForm(_storeDB, number
+                                                        , productName, amount, unitType);
+            
+            if (updateForm.ShowDialog() == DialogResult.OK)
+            {
+                FillOrdersDGV();
+            }
+
         }
 
         private void deleteOrder_Click(object sender, EventArgs e)
         {
-            DeleteOrderForm deleteForm = new DeleteOrderForm(_storeDB);
+            int consignmentNumber = int.Parse(dvgOrders.CurrentRow.Cells[0].Value.ToString());
 
-            if (deleteForm.ShowDialog() == DialogResult.OK)
+            string productName = dvgOrders.CurrentRow.Cells[1].Value.ToString();
+
+            string message = String.Format("Are you sure you want to delete order [{0}, {1}]?"
+                            , consignmentNumber, productName);
+
+            if (!ConfirmDeleting(message))
             {
-                AddConsignmentsToDGV();
+                return;
+            }
+
+            int productID = _storeDB.GetProductID(productName);
+
+            int result = _storeDB.DeleteOrder(consignmentNumber, productID);
+
+            HandleDeletingResult(result);
+
+            if(result == 0)
+            {
+                FillOrdersDGV(); ;
+            }
+        }
+
+        #endregion
+
+        private void showOrdersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (showOrdersComboBox.SelectedIndex == 0)
+            {
+                int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
+
+                AddConsignmentOrdersToDGV(consignmentNumber);
+
+                deleteOrder.Enabled = true;
+                updateConsignment.Enabled = true;
+            }
+            else
+            {
+                deleteOrder.Enabled = false;
+                updateConsignment.Enabled = false;
+
                 AddOrdersToDGV();
             }
 
         }
+
+        private void FillOrdersDGV()
+        {
+            if (showOrdersComboBox.SelectedIndex == 0)
+            {
+                AddConsignmentOrdersToDGV(int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString()));
+            }
+            else
+            {
+                AddOrdersToDGV();
+            }
+        }
+
+        private void dgvConsignments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FillOrdersDGV();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            _storeDB.closeConnection();
+
+            Close();
+        }
+
+        private void HandleDeletingResult(int errorCode)
+        {
+            switch (errorCode)
+            {
+                case 0:
+                    MessageBox.Show("Successful operation");
+                    break;
+                case 1:
+                    MessageBox.Show("Incorrect consignment number");
+                    break;
+                case 2:
+                    MessageBox.Show("You cannot delete this order");
+                    break;
+                case 3:
+                    MessageBox.Show("Incorrect product name");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private bool ConfirmDeleting(string message)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult result;
+
+            result = MessageBox.Show(message, "Confirm deleting", buttons);
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

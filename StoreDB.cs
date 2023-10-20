@@ -145,7 +145,6 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
-
         public int DeleteConsignment(int consNumber)
         {
             SqlCommand command = new SqlCommand("RemoveConsignment", _сonnection);
@@ -165,7 +164,7 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
-        public int AddOrder(int consNumber, long prodID, double prodAmount)
+        public int AddOrder(int consNumber, int prodID, double prodAmount)
         {
             SqlCommand command = new SqlCommand("AddOrder2", _сonnection);
             command.CommandType = CommandType.StoredProcedure;
@@ -228,7 +227,7 @@ namespace StoreApp_DB_
 
         }
 
-        public long GetProductID(string name)
+        public int GetProductID(string name)
         {
             string commandStr = string.Format("SELECT ID FROM Products WHERE Name = '{0}'", name);
 
@@ -236,11 +235,11 @@ namespace StoreApp_DB_
 
             SqlDataReader reader = command.ExecuteReader();
 
-            long result = 0;
+            int result = 0;
 
             if (reader.Read())
             {
-                result = reader.GetInt64(0);
+                result = Convert.ToInt32(reader.GetInt64(0));
             }
 
             reader.Close();
@@ -272,5 +271,50 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
+        public int  UpdateOrder(int consNum, int prodID, double amount, int prodtIDNew)
+        {
+
+            SqlCommand command = new SqlCommand("UpdateOrder", _сonnection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter number = new SqlParameter("@Number", SqlDbType.BigInt);
+            number.Value = consNum;
+            number.Direction = ParameterDirection.Input;
+            command.Parameters.Add(number);
+
+            SqlParameter productID = new SqlParameter("@ProductID", SqlDbType.BigInt);
+            productID.Value = prodID;
+            productID.Direction = ParameterDirection.Input;
+            command.Parameters.Add(productID);
+
+            SqlParameter productIDUpdated = new SqlParameter("@ProductIDUpdated", SqlDbType.BigInt);
+            productIDUpdated.Value = prodID;
+            productIDUpdated.Direction = ParameterDirection.Input;
+            command.Parameters.Add(productIDUpdated);
+
+            SqlParameter productAmount = new SqlParameter("@Amount", SqlDbType.Float);
+            productAmount.Value = amount;
+            productAmount.Direction = ParameterDirection.Input;
+            command.Parameters.Add(productAmount);
+
+            SqlParameter operationResult = new SqlParameter();
+            operationResult.Direction = ParameterDirection.ReturnValue;
+            command.Parameters.Add(operationResult);
+
+            command.ExecuteNonQuery();
+
+            return int.Parse(operationResult.Value.ToString());
+        }
+
+
+        public IEnumerable<Product> GetProducts()
+        {
+            string commandStr = "SELECT P.Name, U.UnitType " +
+                                    "FROM Products P LEFT JOIN Units U ON P.UnitID = U.ID";
+
+            SqlExecutor<Product> productExecutor = new SqlExecutor<Product>(_сonnection);
+
+            return productExecutor.GetRowsFromBD(commandStr);
+        }
     }
 }

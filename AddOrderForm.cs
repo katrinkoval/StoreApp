@@ -18,25 +18,24 @@ namespace StoreApp_DB_
         public AddOrderForm(StoreDB storeDB, int consNumber)
         {
             _storeDB = storeDB;
+
             InitializeComponent();
 
-            numberComboBox.SelectedItem = consNumber.ToString();
-        }
-
-        private void AddOrderForm_Load(object sender, EventArgs e)
-        {
-            foreach (string productName in _storeDB.GetProductNames())
+            foreach (Product product in _storeDB.GetProducts())
             {
-                productIDComboBox.Items.Add(productName);
+                productIDComboBox.Items.Add(string.Format($"{product.Name} {product.UnitType}"));
             }
 
-            foreach (int consNumber in _storeDB.GetConsignmentNumbers())
+            productIDComboBox.SelectedIndex = 0;
+
+            foreach (int number in _storeDB.GetConsignmentNumbers())
             {
-                numberComboBox.Items.Add(consNumber);
+                numberComboBox.Items.Add(number);
             }
 
             productIDComboBox.SelectedIndex = 1;
 
+            numberComboBox.SelectedIndex = numberComboBox.FindString(consNumber.ToString());
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -53,7 +52,13 @@ namespace StoreApp_DB_
             }
 
             int number = int.Parse(numberComboBox.SelectedItem.ToString());
-            long productID = _storeDB.GetProductID(productIDComboBox.SelectedItem.ToString());
+
+            string selectedProduct = productIDComboBox.SelectedItem.ToString();
+
+            string prodName = selectedProduct.Substring(0, selectedProduct.IndexOf(" "));
+
+            int productID = _storeDB.GetProductID(prodName);
+
             float amount = float.Parse(amountTextBox.Text);
 
             int result = _storeDB.AddOrder(number, productID, amount);

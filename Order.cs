@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreApp_DB_
 {
-    //TODO: struct
-    public class Order: ISqlObject
+    public struct Order: ISqlObject
     {
         public long ConsignmentNumber { get; set; }
         public string Product { get; set; }

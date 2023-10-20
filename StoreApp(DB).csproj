@@ -67,18 +67,6 @@
     <Compile Include="AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteConsignmentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeleteConsignmentForm.Designer.cs">
-      <DependentUpon>DeleteConsignmentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DeleteOrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeleteOrderForm.Designer.cs">
-      <DependentUpon>DeleteOrderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ISqlObject.cs" />
     <Compile Include="OperationWithConsignmentForm.cs">
       <SubType>Form</SubType>
@@ -86,7 +74,6 @@
     <Compile Include="OperationWithConsignmentForm.Designer.cs">
       <DependentUpon>OperationWithConsignmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseException.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +82,7 @@
     </Compile>
     <Compile Include="Consignment.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />
@@ -106,6 +94,12 @@
     <Compile Include="UpdateConsignmentForm.Designer.cs">
       <DependentUpon>UpdateConsignmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateOrderForm.Designer.cs">
+      <DependentUpon>UpdateOrderForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddConsignmentForm.resx">
       <DependentUpon>AddConsignmentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,12 +108,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeleteConsignmentForm.resx">
-      <DependentUpon>DeleteConsignmentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeleteOrderForm.resx">
-      <DependentUpon>DeleteOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperationWithConsignmentForm.resx">
       <DependentUpon>OperationWithConsignmentForm.cs</DependentUpon>
@@ -138,6 +126,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateConsignmentForm.resx">
       <DependentUpon>UpdateConsignmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateOrderForm.resx">
+      <DependentUpon>UpdateOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

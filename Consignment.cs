@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StoreApp_DB_
 {
-    public class Consignment: ISqlObject
+    public struct Consignment : ISqlObject
     {
         public long Number { get; set; }
 
