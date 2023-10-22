@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreApp_DB_
@@ -45,7 +38,8 @@ namespace StoreApp_DB_
 
         private void button_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(numberComboBox.SelectedItem.ToString()) || string.IsNullOrWhiteSpace(productIDComboBox.SelectedItem.ToString())
+            if (string.IsNullOrWhiteSpace(numberComboBox.SelectedItem.ToString())
+                            || string.IsNullOrWhiteSpace(productIDComboBox.SelectedItem.ToString())
                                 || string.IsNullOrWhiteSpace(amountTextBox.Text))
             {
                 MessageBox.Show("All fields must be filled");
@@ -59,7 +53,7 @@ namespace StoreApp_DB_
 
             int productID = _storeDB.GetProductID(prodName);
 
-            float amount = float.Parse(amountTextBox.Text);
+            double amount = double.Parse(amountTextBox.Text);
 
             int result = _storeDB.AddOrder(number, productID, amount);
 
@@ -109,7 +103,7 @@ namespace StoreApp_DB_
 
         private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
