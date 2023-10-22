@@ -83,5 +83,13 @@ namespace StoreApp_DB_
         {
             Close();
         }
+
+        private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
