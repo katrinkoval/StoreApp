@@ -18,23 +18,20 @@ namespace StoreApp_DB_
 
         public IEnumerable<T> GetRowsFromBD(string query)
         {
-            List<T> values = new List<T>();
-
             SqlCommand command = new SqlCommand(query, _connection);
 
-            //TODO: using reader
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())   //yeild return
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                T value = new T();
-                value.ReadFromRecord(reader);
 
-                yield return value;
+                while (reader.Read())   
+                {
+                    T value = new T();
+                    value.ReadFromRecord(reader);
+
+                    yield return value;
+                }
+
             }
-
-            reader.Close();
 
         }
     }
