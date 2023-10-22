@@ -1,58 +1,123 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace StoreApp_DB_
 {
-    public class StoreDB
+    public class StoreDB : IDisposable
     {
-        public readonly SqlConnection _сonnection;
+        private SqlConnection _connection;
+        private bool _alreadyDisposed;
+
         private const string dataBaseName = "Store";
 
         public StoreDB(string servername, string login, string password)
         {
-            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
-            sqlConnectionStringBuilder.DataSource = servername;
-            sqlConnectionStringBuilder.InitialCatalog = dataBaseName;
-            //sqlConnectionStringBuilder.IntegratedSecurity = true;
-            sqlConnectionStringBuilder.UserID = login;
-            sqlConnectionStringBuilder.Password = password;
-            string strConnection = sqlConnectionStringBuilder.ToString();
-            _сonnection = new SqlConnection(strConnection);
+            InitializeConnection(servername, login, password);
         }
 
         public StoreDB()
         {
-            _сonnection = null;
+            _connection = null;
         }
 
-        public void openConnection()
+        private void InitializeConnection(string servername, string login, string password)
         {
-            if (_сonnection.State == System.Data.ConnectionState.Closed)
+            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
+            sqlConnectionStringBuilder.DataSource = servername;
+            sqlConnectionStringBuilder.InitialCatalog = dataBaseName;
+            sqlConnectionStringBuilder.UserID = login;
+            sqlConnectionStringBuilder.Password = password;
+            string strConnection = sqlConnectionStringBuilder.ToString();
+
+            _connection = new SqlConnection(strConnection);
+        }
+
+        private void CheckConnectionState()
+        {
+            if (_alreadyDisposed)      
             {
-                _сonnection.Open();
+                throw new ObjectDisposedException(nameof(StoreDB));
+            }
+            if(_connection.State == System.Data.ConnectionState.Closed)
+            {
+                throw new SqlConnectionException("Connection is closed");
             }
         }
 
-        public void closeConnection()
+        public void OpenConnection(string servername = null, string login = null, string password = null)
         {
-            if (_сonnection.State == System.Data.ConnectionState.Open)
+            if (_alreadyDisposed)       
             {
-                _сonnection.Close();
+                throw new ObjectDisposedException(nameof(StoreDB));
             }
-        }   
+
+            if(_connection == null && servername != null  && login != null && password != null)
+            {
+                InitializeConnection(servername, login, password);
+            }
+            else
+            {
+                throw new SqlConnectionException("Incorrect connection string");
+            }
+
+            if (_connection.State == System.Data.ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (_alreadyDisposed)
+            {
+                throw new ObjectDisposedException(nameof(StoreDB));
+            }
+
+            if (_connection.State == System.Data.ConnectionState.Open)
+            {
+                _connection.Close();
+            }
+        }
+
+        public void Dispose()
+        {
+            if (_alreadyDisposed)
+            {
+                return;
+            }
+
+            _connection.Dispose();
+
+            _alreadyDisposed = true;
+
+            GC.SuppressFinalize(this);
+        }
+
+        ~StoreDB()
+        {
+            if (_alreadyDisposed)
+            {
+                return;
+            }
+
+            Dispose();
+        }
+
+
+        #region === SQL Query ===
 
         public IEnumerable<Order> GetOrders()
         {
+            CheckConnectionState();
+
             string commandStr = "SELECT O.ConsignmentNumber, P.Name, P.Price, O.Amount" +
                 ", U.UnitType, P.Price * O.Amount " +
                 "FROM Orders O LEFT JOIN Products P ON O.ProductID = P.ID " +
                 "LEFT JOIN Units U ON U.ID = P.UnitID";
 
-            SqlExecutor<Order> orderExecutor = new SqlExecutor<Order>(_сonnection);
+            SqlExecutor<Order> orderExecutor = new SqlExecutor<Order>(_connection);
 
             return orderExecutor.GetRowsFromBD(commandStr);
         }
@@ -65,7 +130,7 @@ namespace StoreApp_DB_
                 "LEFT JOIN Units U ON U.ID = P.UnitID " +
                 "WHERE O.ConsignmentNumber = {0}", consigmentNumber);
 
-            SqlExecutor<Order> orderExecutor = new SqlExecutor<Order>(_сonnection);
+            SqlExecutor<Order> orderExecutor = new SqlExecutor<Order>(_connection);
 
             return orderExecutor.GetRowsFromBD(commandStr);
         }
@@ -77,16 +142,16 @@ namespace StoreApp_DB_
                                       + "LEFT JOIN Individuals I1 ON C.SupplierID = I1.IPN "
                                       + "LEFT JOIN Individuals I2 ON C.RecipientID = I2.IPN";
 
-            SqlExecutor<Consignment> consingmentExecutor = new SqlExecutor<Consignment>(_сonnection);
+            SqlExecutor<Consignment> consingmentExecutor = new SqlExecutor<Consignment>(_connection);
 
             return consingmentExecutor.GetRowsFromBD(commandStr);
         }
 
         public int ProcedureExecute(bool _isUsingIPN, string commandText, Consignment cons
                             , string supplierLastName = "", string recipientLastName = ""
-                            ,    int supplierID = 0, int recipientID = 0)
+                            , int supplierID = 0, int recipientID = 0)
         {
-            SqlCommand command = new SqlCommand(commandText, _сonnection);
+            SqlCommand command = new SqlCommand(commandText, _connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlParameter number = new SqlParameter("@Number", SqlDbType.BigInt);
@@ -147,7 +212,7 @@ namespace StoreApp_DB_
 
         public int DeleteConsignment(int consNumber)
         {
-            SqlCommand command = new SqlCommand("RemoveConsignment", _сonnection);
+            SqlCommand command = new SqlCommand("RemoveConsignment", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlParameter consignmentNumber = new SqlParameter("@Number", SqlDbType.BigInt);
@@ -166,7 +231,7 @@ namespace StoreApp_DB_
 
         public int AddOrder(int consNumber, int prodID, double prodAmount)
         {
-            SqlCommand command = new SqlCommand("AddOrder2", _сonnection);
+            SqlCommand command = new SqlCommand("AddOrder2", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlParameter number = new SqlParameter("@ConsigmentNumber", SqlDbType.BigInt);
@@ -197,33 +262,30 @@ namespace StoreApp_DB_
         {
             string commandStr = "SELECT Name FROM Products";
 
-            SqlCommand command = new SqlCommand(commandStr, _сonnection);
+            SqlCommand command = new SqlCommand(commandStr, _connection);
 
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())  
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                yield return reader.GetString(0);
+                while (reader.Read())
+                {
+                    yield return reader.GetString(0);
+                }
             }
-
-            reader.Close();
-
         }
 
         public IEnumerable<long> GetConsignmentNumbers()
         {
             string commandStr = "SELECT Number FROM Consignments";
 
-            SqlCommand command = new SqlCommand(commandStr, _сonnection);
+            SqlCommand command = new SqlCommand(commandStr, _connection);
 
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                yield return reader.GetInt64(0);
+                while (reader.Read())
+                {
+                    yield return reader.GetInt64(0);
+                }
             }
-
-            reader.Close();
 
         }
 
@@ -231,25 +293,26 @@ namespace StoreApp_DB_
         {
             string commandStr = string.Format("SELECT ID FROM Products WHERE Name = '{0}'", name);
 
-            SqlCommand command = new SqlCommand(commandStr, _сonnection);
-
-            SqlDataReader reader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(commandStr, _connection);
 
             int result = 0;
 
-            if (reader.Read())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                result = Convert.ToInt32(reader.GetInt64(0));
-            }
 
-            reader.Close();
+                if (reader.Read())
+                {
+                    result = Convert.ToInt32(reader.GetInt64(0));
+                }
+
+            }
 
             return result;
         }
 
         public int DeleteOrder(int consNumber, int prodID)
         {
-            SqlCommand command = new SqlCommand("RemoveOrder", _сonnection);
+            SqlCommand command = new SqlCommand("RemoveOrder", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlParameter consignmentNumber = new SqlParameter("@Number", SqlDbType.BigInt);
@@ -271,10 +334,10 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
-        public int  UpdateOrder(int consNum, int prodID, double amount, int prodtIDNew)
+        public int UpdateOrder(int consNum, int prodID, double amount, int prodtIDNew)
         {
 
-            SqlCommand command = new SqlCommand("UpdateOrder", _сonnection);
+            SqlCommand command = new SqlCommand("UpdateOrder", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlParameter number = new SqlParameter("@Number", SqlDbType.BigInt);
@@ -312,9 +375,13 @@ namespace StoreApp_DB_
             string commandStr = "SELECT P.Name, U.UnitType " +
                                     "FROM Products P LEFT JOIN Units U ON P.UnitID = U.ID";
 
-            SqlExecutor<Product> productExecutor = new SqlExecutor<Product>(_сonnection);
+            SqlExecutor<Product> productExecutor = new SqlExecutor<Product>(_connection);
 
             return productExecutor.GetRowsFromBD(commandStr);
         }
+
+      
+        #endregion
+
     }
 }

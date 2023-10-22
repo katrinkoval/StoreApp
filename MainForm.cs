@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace StoreApp_DB_
@@ -24,11 +21,10 @@ namespace StoreApp_DB_
 
             if (auntForm.ShowDialog() == DialogResult.OK)
             {
-                _storeDB = new StoreDB(auntForm.serverNameTextBox.Text, auntForm.loginTextBox.Text
-                                                                    , auntForm.passwordTextBox.Text);
                 try
                 {
-                    _storeDB.openConnection();
+                    _storeDB.OpenConnection(auntForm.serverNameTextBox.Text
+                            , auntForm.loginTextBox.Text, auntForm.passwordTextBox.Text);
 
                     auntForm.Close();
                 }
@@ -281,7 +277,7 @@ namespace StoreApp_DB_
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            _storeDB.closeConnection();
+            _storeDB.CloseConnection();
 
             Close();
         }
