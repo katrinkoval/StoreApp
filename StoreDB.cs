@@ -83,7 +83,7 @@ namespace StoreApp_DB_
 
         public void Dispose()
         {
-            if (_alreadyDisposed)
+            if (_alreadyDisposed || _connection == null)
             {
                 return;
             }
@@ -97,7 +97,7 @@ namespace StoreApp_DB_
 
         ~StoreDB()
         {
-            if (_alreadyDisposed)
+            if (_alreadyDisposed || _connection == null)
             {
                 return;
             }
