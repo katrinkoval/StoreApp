@@ -319,5 +319,16 @@ namespace StoreApp_DB_
             return false;
         }
 
+        private void allwindowButton_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
     }
 }
