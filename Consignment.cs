@@ -18,6 +18,8 @@ namespace StoreApp_DB_
         public string SupplierName { get; set; }
 
         public string RecipientName { get; set; }
+        public int SupplierIpn { get; set; }
+        public int RecipientIpn { get; set; }
 
         public void ReadFromRecord(IDataRecord reader)
         {
