@@ -28,7 +28,7 @@ namespace StoreApp_DB_
             sqlConnectionStringBuilder.DataSource = servername;
             sqlConnectionStringBuilder.InitialCatalog = dataBaseName;
             sqlConnectionStringBuilder.UserID = login;
-            sqlConnectionStringBuilder.Password = password;
+            sqlConnectionStringBuilder.Password = password;                 //useruser
             string strConnection = sqlConnectionStringBuilder.ToString();
 
             _connection = new SqlConnection(strConnection);
@@ -106,7 +106,7 @@ namespace StoreApp_DB_
         }
 
 
-        #region === SQL Query ===
+        #region === SQL Queries ===
 
         public IEnumerable<Order> GetOrders()
         {
@@ -124,6 +124,8 @@ namespace StoreApp_DB_
 
         public IEnumerable<Order> GetConsignmentsOrders(int consigmentNumber)
         {
+            CheckConnectionState();
+
             string commandStr = string.Format("SELECT O.ConsignmentNumber, P.Name, P.Price, O.Amount" +
                 ", U.UnitType, P.Price * O.Amount " +
                 "FROM Orders O LEFT JOIN Products P ON O.ProductID = P.ID " +
@@ -137,6 +139,8 @@ namespace StoreApp_DB_
 
         public IEnumerable<Consignment> GetConsignments()
         {
+            CheckConnectionState();
+
             string commandStr = "SELECT C.Number, C.ConsignmentDate, I1.Name + ' ' + I1.Surname, "
                                       + "I2.Name + ' ' + I2.Surname FROM Consignments C "
                                       + "LEFT JOIN Individuals I1 ON C.SupplierID = I1.IPN "
@@ -147,9 +151,7 @@ namespace StoreApp_DB_
             return consingmentExecutor.GetRowsFromBD(commandStr);
         }
 
-        public int ProcedureExecute(bool _isUsingIPN, string commandText, Consignment cons
-                            , string supplierLastName = "", string recipientLastName = ""
-                            , int supplierID = 0, int recipientID = 0)
+        public int ProcedureExecute(bool _isUsingIPN, string commandText, Consignment cons)
         {
             SqlCommand command = new SqlCommand(commandText, _connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -167,11 +169,11 @@ namespace StoreApp_DB_
             if (_isUsingIPN)
             {
                 SqlParameter supplierIPN = new SqlParameter("@SupplierID", SqlDbType.BigInt);
-                supplierIPN.Value = supplierID;
+                supplierIPN.Value = cons.SupplierIpn;
                 supplierIPN.Direction = ParameterDirection.Input;
 
                 SqlParameter recipientIPN = new SqlParameter("@RecipientID", SqlDbType.BigInt);
-                recipientIPN.Value = recipientID;
+                recipientIPN.Value = cons.RecipientIpn;
                 recipientIPN.Direction = ParameterDirection.Input;
 
                 command.Parameters.Add(supplierIPN);
@@ -179,20 +181,23 @@ namespace StoreApp_DB_
             }
             else
             {
+                string[] supplierNameParts = cons.SupplierName.Split(' ');
+                string[] recipientNameParts = cons.RecipientName.Split(' ');
+
                 SqlParameter supplierName = new SqlParameter("@SupplierName", SqlDbType.NVarChar);
-                supplierName.Value = cons.SupplierName;
+                supplierName.Value = supplierNameParts[0];
                 supplierName.Direction = ParameterDirection.Input;
 
                 SqlParameter supplierSurname = new SqlParameter("@SupplierSurname", SqlDbType.NVarChar);
-                supplierSurname.Value = supplierLastName;
+                supplierSurname.Value = supplierNameParts[1];
                 supplierSurname.Direction = ParameterDirection.Input;
 
                 SqlParameter recipientName = new SqlParameter("@RecipientName", SqlDbType.NVarChar);
-                recipientName.Value = cons.RecipientName;
+                recipientName.Value = recipientNameParts[0];
                 recipientName.Direction = ParameterDirection.Input;
 
                 SqlParameter recipientSurname = new SqlParameter("@RecipientSurname", SqlDbType.NVarChar);
-                recipientSurname.Value = recipientLastName;
+                recipientSurname.Value = recipientNameParts[1];
                 recipientSurname.Direction = ParameterDirection.Input;
 
                 command.Parameters.Add(supplierName);
@@ -212,6 +217,8 @@ namespace StoreApp_DB_
 
         public int DeleteConsignment(int consNumber)
         {
+            CheckConnectionState();
+
             SqlCommand command = new SqlCommand("RemoveConsignment", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
@@ -229,8 +236,10 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
-        public int AddOrder(int consNumber, int prodID, double prodAmount)
+        public int AddOrder(int consNumber, long prodID, double prodAmount)
         {
+            CheckConnectionState();
+
             SqlCommand command = new SqlCommand("AddOrder2", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
@@ -260,6 +269,8 @@ namespace StoreApp_DB_
 
         public IEnumerable<string> GetProductNames()
         {
+            CheckConnectionState();
+
             string commandStr = "SELECT Name FROM Products";
 
             SqlCommand command = new SqlCommand(commandStr, _connection);
@@ -275,6 +286,8 @@ namespace StoreApp_DB_
 
         public IEnumerable<long> GetConsignmentNumbers()
         {
+            CheckConnectionState();
+
             string commandStr = "SELECT Number FROM Consignments";
 
             SqlCommand command = new SqlCommand(commandStr, _connection);
@@ -286,32 +299,113 @@ namespace StoreApp_DB_
                     yield return reader.GetInt64(0);
                 }
             }
-
         }
 
-        public int GetProductID(string name)
+        public IEnumerable<long> GetIndividualIDs()
         {
+            CheckConnectionState();
+
+            string commandStr = "SELECT IPN FROM Individuals";
+
+            SqlCommand command = new SqlCommand(commandStr, _connection);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    yield return reader.GetInt64(0);
+                }
+            }
+        }
+
+        public IEnumerable<string> GetIndividualNames()
+        {
+            CheckConnectionState();
+
+            string commandStr = "SELECT Name + ' ' + Surname FROM Individuals";
+
+            SqlCommand command = new SqlCommand(commandStr, _connection);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    yield return reader.GetString(0);
+                }
+            }
+        }
+
+        public long GetProductID(string name)
+        {
+            CheckConnectionState();
+
             string commandStr = string.Format("SELECT ID FROM Products WHERE Name = '{0}'", name);
 
             SqlCommand command = new SqlCommand(commandStr, _connection);
 
-            int result = 0;
+            long result = 0;
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
-
                 if (reader.Read())
                 {
-                    result = Convert.ToInt32(reader.GetInt64(0));
+                    result = reader.GetInt64(0);
                 }
-
             }
 
             return result;
         }
 
-        public int DeleteOrder(int consNumber, int prodID)
+        public string GetNameByIPN(int ipn)
         {
+            CheckConnectionState();
+
+            string commandStr = string.Format("SELECT Name + ' ' + Surname " +
+                                               "FROM Individuals WHERE IPN = {0}", ipn);
+
+            SqlCommand command = new SqlCommand(commandStr, _connection);
+
+            string result = "";
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    result = reader.GetString(0);
+                }
+            }
+
+            return result;
+        }
+
+        public long GetIPNByName(string name)
+        {
+            CheckConnectionState();
+
+            string[] nameParts = name.Split(' ');
+
+            string commandStr = string.Format("SELECT IPN FROM Individuals " +
+                                                "WHERE Name = '{0}' AND Surname = '{1}'", nameParts[0], nameParts[1]);
+
+            SqlCommand command = new SqlCommand(commandStr, _connection);
+
+            long result = 0;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    result = reader.GetInt64(0);
+                }
+            }
+
+            return result;
+        }
+
+        public int DeleteOrder(int consNumber, long prodID)
+        {
+            CheckConnectionState();
+
             SqlCommand command = new SqlCommand("RemoveOrder", _connection);
             command.CommandType = CommandType.StoredProcedure;
 
@@ -334,8 +428,9 @@ namespace StoreApp_DB_
             return int.Parse(operationResult.Value.ToString());
         }
 
-        public int UpdateOrder(int consNum, int prodID, double amount, int prodtIDNew)
+        public int UpdateOrder(int consNum, long prodID, double amount, long prodtIDNew)
         {
+            CheckConnectionState();
 
             SqlCommand command = new SqlCommand("UpdateOrder", _connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -372,6 +467,8 @@ namespace StoreApp_DB_
 
         public IEnumerable<Product> GetProducts()
         {
+            CheckConnectionState();
+
             string commandStr = "SELECT P.Name, U.UnitType " +
                                     "FROM Products P LEFT JOIN Units U ON P.UnitID = U.ID";
 
