@@ -115,12 +115,8 @@ namespace StoreApp_DB_
             string supplierName = dgvConsignments.CurrentRow.Cells[2].Value.ToString();
             string recipientName = dgvConsignments.CurrentRow.Cells[3].Value.ToString();
 
-            string[] supplierNameParts = supplierName.Split(' ');
-            string[] recipientNameParts = recipientName.Split(' ');
-
             OperationWithConsignmentForm updateForm = new UpdateConsignmentForm(_storeDB
-                , number, date, supplierNameParts[0], supplierNameParts[1], recipientNameParts[0]
-                , recipientNameParts[1]);
+                , number, date, supplierName, recipientName);
 
             if (updateForm.ShowDialog() == DialogResult.OK)
             {
@@ -223,7 +219,7 @@ namespace StoreApp_DB_
                 return;
             }
 
-            int productID = _storeDB.GetProductID(productName);
+            long productID = _storeDB.GetProductID(productName);
 
             int result = _storeDB.DeleteOrder(consignmentNumber, productID);
 

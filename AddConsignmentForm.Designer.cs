@@ -38,7 +38,6 @@ namespace StoreApp_DB_
             this.ClientSize = new System.Drawing.Size(457, 329);
             this.Name = "AddConsignmentForm";
             this.Text = "AddingForm";
-            this.Load += new System.EventHandler(this.AddingForm_Load);
             this.ResumeLayout(false);
 
         }

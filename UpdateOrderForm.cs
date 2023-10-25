@@ -45,13 +45,13 @@ namespace StoreApp_DB_
                 return;
             }
 
-            int productID = _storeDB.GetProductID(_productName);
+            long productID = _storeDB.GetProductID(_productName);
 
             string selectedProduct = productComboBox.SelectedItem.ToString();
 
             string prodName = selectedProduct.Substring(0, selectedProduct.IndexOf(" "));
 
-            int productIDUpdated = _storeDB.GetProductID(prodName);
+            long productIDUpdated = _storeDB.GetProductID(prodName);
 
             int result = _storeDB.UpdateOrder(_consNumber, productID, amount, productIDUpdated);
 

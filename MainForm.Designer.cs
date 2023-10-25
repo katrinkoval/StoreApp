@@ -36,9 +36,9 @@ namespace StoreApp_DB_
             this.name = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgvConsignments = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvConsignments = new System.Windows.Forms.DataGridView();
             this.addConsignment = new System.Windows.Forms.Button();
             this.removeConsignment = new System.Windows.Forms.Button();
             this.updateConsignment = new System.Windows.Forms.Button();
@@ -47,22 +47,22 @@ namespace StoreApp_DB_
             this.updateOrder = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dvgOrders = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsignments)).BeginInit();
+            this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgOrders)).BeginInit();
             this.panel8.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
@@ -143,6 +143,27 @@ namespace StoreApp_DB_
             this.panel1.Size = new System.Drawing.Size(338, 562);
             this.panel1.TabIndex = 1;
             // 
+            // dgvConsignments
+            // 
+            this.dgvConsignments.AllowUserToAddRows = false;
+            this.dgvConsignments.AllowUserToDeleteRows = false;
+            this.dgvConsignments.AllowUserToResizeColumns = false;
+            this.dgvConsignments.AllowUserToResizeRows = false;
+            this.dgvConsignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvConsignments.BackgroundColor = System.Drawing.Color.White;
+            this.dgvConsignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConsignments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvConsignments.Location = new System.Drawing.Point(0, 44);
+            this.dgvConsignments.Name = "dgvConsignments";
+            this.dgvConsignments.ReadOnly = true;
+            this.dgvConsignments.RowHeadersVisible = false;
+            this.dgvConsignments.RowHeadersWidth = 51;
+            this.dgvConsignments.RowTemplate.Height = 24;
+            this.dgvConsignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvConsignments.Size = new System.Drawing.Size(338, 518);
+            this.dgvConsignments.TabIndex = 0;
+            this.dgvConsignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsignments_CellClick);
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label1);
@@ -166,27 +187,6 @@ namespace StoreApp_DB_
             this.label1.TabIndex = 1;
             this.label1.Text = "Consignments";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dgvConsignments
-            // 
-            this.dgvConsignments.AllowUserToAddRows = false;
-            this.dgvConsignments.AllowUserToDeleteRows = false;
-            this.dgvConsignments.AllowUserToResizeColumns = false;
-            this.dgvConsignments.AllowUserToResizeRows = false;
-            this.dgvConsignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConsignments.BackgroundColor = System.Drawing.Color.White;
-            this.dgvConsignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConsignments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvConsignments.Location = new System.Drawing.Point(0, 44);
-            this.dgvConsignments.Name = "dgvConsignments";
-            this.dgvConsignments.ReadOnly = true;
-            this.dgvConsignments.RowHeadersVisible = false;
-            this.dgvConsignments.RowHeadersWidth = 51;
-            this.dgvConsignments.RowTemplate.Height = 24;
-            this.dgvConsignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConsignments.Size = new System.Drawing.Size(338, 518);
-            this.dgvConsignments.TabIndex = 0;
-            this.dgvConsignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsignments_CellClick);
             // 
             // addConsignment
             // 
@@ -303,21 +303,6 @@ namespace StoreApp_DB_
             this.panel6.Size = new System.Drawing.Size(1205, 562);
             this.panel6.TabIndex = 17;
             // 
-            // panel5
-            // 
-            this.panel5.AutoSize = true;
-            this.panel5.Controls.Add(this.removeConsignment);
-            this.panel5.Controls.Add(this.updateOrder);
-            this.panel5.Controls.Add(this.addConsignment);
-            this.panel5.Controls.Add(this.deleteOrder);
-            this.panel5.Controls.Add(this.updateConsignment);
-            this.panel5.Controls.Add(this.addOrderButton);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 602);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1205, 46);
-            this.panel5.TabIndex = 16;
-            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -379,6 +364,21 @@ namespace StoreApp_DB_
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
+            // panel5
+            // 
+            this.panel5.AutoSize = true;
+            this.panel5.Controls.Add(this.removeConsignment);
+            this.panel5.Controls.Add(this.updateOrder);
+            this.panel5.Controls.Add(this.addConsignment);
+            this.panel5.Controls.Add(this.deleteOrder);
+            this.panel5.Controls.Add(this.updateConsignment);
+            this.panel5.Controls.Add(this.addOrderButton);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 602);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1205, 46);
+            this.panel5.TabIndex = 16;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -394,19 +394,19 @@ namespace StoreApp_DB_
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConsignments)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConsignments)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgOrders)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -30,6 +30,7 @@ namespace StoreApp_DB_
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numberComboBox = new System.Windows.Forms.ComboBox();
             this.productIDComboBox = new System.Windows.Forms.ComboBox();
             this.button = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@ namespace StoreApp_DB_
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
-            this.numberComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,15 @@ namespace StoreApp_DB_
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(438, 223);
             this.panel1.TabIndex = 0;
+            // 
+            // numberComboBox
+            // 
+            this.numberComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numberComboBox.FormattingEnabled = true;
+            this.numberComboBox.Location = new System.Drawing.Point(207, 56);
+            this.numberComboBox.Name = "numberComboBox";
+            this.numberComboBox.Size = new System.Drawing.Size(198, 28);
+            this.numberComboBox.TabIndex = 23;
             // 
             // productIDComboBox
             // 
@@ -143,15 +152,6 @@ namespace StoreApp_DB_
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // numberComboBox
-            // 
-            this.numberComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numberComboBox.FormattingEnabled = true;
-            this.numberComboBox.Location = new System.Drawing.Point(207, 56);
-            this.numberComboBox.Name = "numberComboBox";
-            this.numberComboBox.Size = new System.Drawing.Size(198, 28);
-            this.numberComboBox.TabIndex = 23;
-            // 
             // AddOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -163,6 +163,7 @@ namespace StoreApp_DB_
             this.Name = "AddOrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddOrderForm";
+            this.Load += new System.EventHandler(this.AddOrderForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -51,7 +51,7 @@ namespace StoreApp_DB_
 
             string prodName = selectedProduct.Substring(0, selectedProduct.IndexOf(" "));
 
-            int productID = _storeDB.GetProductID(prodName);
+            long productID = _storeDB.GetProductID(prodName);
 
             double amount = double.Parse(amountTextBox.Text);
 
@@ -109,5 +109,9 @@ namespace StoreApp_DB_
             }
         }
 
+        private void AddOrderForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

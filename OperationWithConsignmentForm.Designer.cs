@@ -31,25 +31,21 @@ namespace StoreApp_DB_
         {
             this.exitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.recipientIpnTextBox = new System.Windows.Forms.TextBox();
-            this.supplierIpnTextBox = new System.Windows.Forms.TextBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.recipientIpnLabel = new System.Windows.Forms.Label();
             this.supplierIpnLabel = new System.Windows.Forms.Label();
             this.button = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.recipientSurnameTextBox = new System.Windows.Forms.TextBox();
-            this.recipientNameTextBox = new System.Windows.Forms.TextBox();
-            this.supplierSurnameTextBox = new System.Windows.Forms.TextBox();
-            this.supplierNameTextBox = new System.Windows.Forms.TextBox();
-            this.dateTextBox = new System.Windows.Forms.TextBox();
             this.numberTextBox = new System.Windows.Forms.TextBox();
             this.useIdLabel = new System.Windows.Forms.Label();
-            this.recipientSurnameLabel = new System.Windows.Forms.Label();
             this.recipientNameLabel = new System.Windows.Forms.Label();
-            this.supplierSurnameLabel = new System.Windows.Forms.Label();
             this.supplierNameLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
             this.numberLabel = new System.Windows.Forms.Label();
+            this.supplierIpnComboBox = new System.Windows.Forms.ComboBox();
+            this.recipientIpnComboBox = new System.Windows.Forms.ComboBox();
+            this.supplierNameComboBox = new System.Windows.Forms.ComboBox();
+            this.recipientNameComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,46 +65,35 @@ namespace StoreApp_DB_
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.recipientIpnTextBox);
-            this.panel1.Controls.Add(this.supplierIpnTextBox);
+            this.panel1.Controls.Add(this.recipientNameComboBox);
+            this.panel1.Controls.Add(this.supplierNameComboBox);
+            this.panel1.Controls.Add(this.recipientIpnComboBox);
+            this.panel1.Controls.Add(this.supplierIpnComboBox);
+            this.panel1.Controls.Add(this.dateTimePicker);
             this.panel1.Controls.Add(this.recipientIpnLabel);
             this.panel1.Controls.Add(this.supplierIpnLabel);
             this.panel1.Controls.Add(this.button);
             this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Controls.Add(this.recipientSurnameTextBox);
-            this.panel1.Controls.Add(this.recipientNameTextBox);
-            this.panel1.Controls.Add(this.supplierSurnameTextBox);
-            this.panel1.Controls.Add(this.supplierNameTextBox);
-            this.panel1.Controls.Add(this.dateTextBox);
             this.panel1.Controls.Add(this.numberTextBox);
             this.panel1.Controls.Add(this.useIdLabel);
-            this.panel1.Controls.Add(this.recipientSurnameLabel);
             this.panel1.Controls.Add(this.recipientNameLabel);
-            this.panel1.Controls.Add(this.supplierSurnameLabel);
             this.panel1.Controls.Add(this.supplierNameLabel);
             this.panel1.Controls.Add(this.dateLabel);
             this.panel1.Controls.Add(this.numberLabel);
             this.panel1.Controls.Add(this.exitButton);
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(449, 320);
+            this.panel1.Size = new System.Drawing.Size(449, 255);
             this.panel1.TabIndex = 5;
             // 
-            // recipientIpnTextBox
+            // dateTimePicker
             // 
-            this.recipientIpnTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientIpnTextBox.Location = new System.Drawing.Point(184, 148);
-            this.recipientIpnTextBox.Name = "recipientIpnTextBox";
-            this.recipientIpnTextBox.Size = new System.Drawing.Size(257, 27);
-            this.recipientIpnTextBox.TabIndex = 23;
-            // 
-            // supplierIpnTextBox
-            // 
-            this.supplierIpnTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierIpnTextBox.Location = new System.Drawing.Point(184, 116);
-            this.supplierIpnTextBox.Name = "supplierIpnTextBox";
-            this.supplierIpnTextBox.Size = new System.Drawing.Size(257, 27);
-            this.supplierIpnTextBox.TabIndex = 22;
+            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker.Location = new System.Drawing.Point(184, 80);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(257, 27);
+            this.dateTimePicker.TabIndex = 24;
             // 
             // recipientIpnLabel
             // 
@@ -134,7 +119,7 @@ namespace StoreApp_DB_
             // 
             this.button.BackColor = System.Drawing.Color.Chocolate;
             this.button.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button.Location = new System.Drawing.Point(80, 266);
+            this.button.Location = new System.Drawing.Point(81, 205);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(124, 35);
             this.button.TabIndex = 19;
@@ -145,53 +130,13 @@ namespace StoreApp_DB_
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(245, 266);
+            this.cancelButton.Location = new System.Drawing.Point(242, 205);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(122, 35);
             this.cancelButton.TabIndex = 18;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
-            // recipientSurnameTextBox
-            // 
-            this.recipientSurnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientSurnameTextBox.Location = new System.Drawing.Point(184, 216);
-            this.recipientSurnameTextBox.Name = "recipientSurnameTextBox";
-            this.recipientSurnameTextBox.Size = new System.Drawing.Size(257, 27);
-            this.recipientSurnameTextBox.TabIndex = 17;
-            // 
-            // recipientNameTextBox
-            // 
-            this.recipientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientNameTextBox.Location = new System.Drawing.Point(184, 181);
-            this.recipientNameTextBox.Name = "recipientNameTextBox";
-            this.recipientNameTextBox.Size = new System.Drawing.Size(257, 27);
-            this.recipientNameTextBox.TabIndex = 16;
-            // 
-            // supplierSurnameTextBox
-            // 
-            this.supplierSurnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierSurnameTextBox.Location = new System.Drawing.Point(184, 149);
-            this.supplierSurnameTextBox.Name = "supplierSurnameTextBox";
-            this.supplierSurnameTextBox.Size = new System.Drawing.Size(257, 27);
-            this.supplierSurnameTextBox.TabIndex = 15;
-            // 
-            // supplierNameTextBox
-            // 
-            this.supplierNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierNameTextBox.Location = new System.Drawing.Point(184, 116);
-            this.supplierNameTextBox.Name = "supplierNameTextBox";
-            this.supplierNameTextBox.Size = new System.Drawing.Size(257, 27);
-            this.supplierNameTextBox.TabIndex = 14;
-            // 
-            // dateTextBox
-            // 
-            this.dateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTextBox.Location = new System.Drawing.Point(184, 80);
-            this.dateTextBox.Name = "dateTextBox";
-            this.dateTextBox.Size = new System.Drawing.Size(257, 27);
-            this.dateTextBox.TabIndex = 13;
             // 
             // numberTextBox
             // 
@@ -200,11 +145,12 @@ namespace StoreApp_DB_
             this.numberTextBox.Name = "numberTextBox";
             this.numberTextBox.Size = new System.Drawing.Size(257, 27);
             this.numberTextBox.TabIndex = 12;
+            this.numberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberTextBox_KeyPress);
             // 
             // useIdLabel
             // 
             this.useIdLabel.AutoSize = true;
-            this.useIdLabel.Location = new System.Drawing.Point(378, 246);
+            this.useIdLabel.Location = new System.Drawing.Point(378, 189);
             this.useIdLabel.Name = "useIdLabel";
             this.useIdLabel.Size = new System.Drawing.Size(63, 17);
             this.useIdLabel.TabIndex = 11;
@@ -213,35 +159,15 @@ namespace StoreApp_DB_
             this.useIdLabel.MouseEnter += new System.EventHandler(this.useIdLabel_MouseEnter);
             this.useIdLabel.MouseLeave += new System.EventHandler(this.useIdLabel_MouseLeave);
             // 
-            // recipientSurnameLabel
-            // 
-            this.recipientSurnameLabel.AutoSize = true;
-            this.recipientSurnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientSurnameLabel.Location = new System.Drawing.Point(12, 223);
-            this.recipientSurnameLabel.Name = "recipientSurnameLabel";
-            this.recipientSurnameLabel.Size = new System.Drawing.Size(156, 20);
-            this.recipientSurnameLabel.TabIndex = 10;
-            this.recipientSurnameLabel.Text = "Recipient Surname:";
-            // 
             // recipientNameLabel
             // 
             this.recipientNameLabel.AutoSize = true;
             this.recipientNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientNameLabel.Location = new System.Drawing.Point(12, 188);
+            this.recipientNameLabel.Location = new System.Drawing.Point(12, 155);
             this.recipientNameLabel.Name = "recipientNameLabel";
             this.recipientNameLabel.Size = new System.Drawing.Size(133, 20);
             this.recipientNameLabel.TabIndex = 9;
             this.recipientNameLabel.Text = "Recipient Name:";
-            // 
-            // supplierSurnameLabel
-            // 
-            this.supplierSurnameLabel.AutoSize = true;
-            this.supplierSurnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierSurnameLabel.Location = new System.Drawing.Point(12, 156);
-            this.supplierSurnameLabel.Name = "supplierSurnameLabel";
-            this.supplierSurnameLabel.Size = new System.Drawing.Size(147, 20);
-            this.supplierSurnameLabel.TabIndex = 8;
-            this.supplierSurnameLabel.Text = "Supplier Surname:";
             // 
             // supplierNameLabel
             // 
@@ -273,12 +199,48 @@ namespace StoreApp_DB_
             this.numberLabel.TabIndex = 5;
             this.numberLabel.Text = "Number:";
             // 
+            // supplierIpnComboBox
+            // 
+            this.supplierIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supplierIpnComboBox.FormattingEnabled = true;
+            this.supplierIpnComboBox.Location = new System.Drawing.Point(183, 115);
+            this.supplierIpnComboBox.Name = "supplierIpnComboBox";
+            this.supplierIpnComboBox.Size = new System.Drawing.Size(258, 28);
+            this.supplierIpnComboBox.TabIndex = 25;
+            // 
+            // recipientIpnComboBox
+            // 
+            this.recipientIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recipientIpnComboBox.FormattingEnabled = true;
+            this.recipientIpnComboBox.Location = new System.Drawing.Point(183, 147);
+            this.recipientIpnComboBox.Name = "recipientIpnComboBox";
+            this.recipientIpnComboBox.Size = new System.Drawing.Size(258, 28);
+            this.recipientIpnComboBox.TabIndex = 26;
+            // 
+            // supplierNameComboBox
+            // 
+            this.supplierNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supplierNameComboBox.FormattingEnabled = true;
+            this.supplierNameComboBox.Location = new System.Drawing.Point(183, 115);
+            this.supplierNameComboBox.Name = "supplierNameComboBox";
+            this.supplierNameComboBox.Size = new System.Drawing.Size(258, 28);
+            this.supplierNameComboBox.TabIndex = 27;
+            // 
+            // recipientNameComboBox
+            // 
+            this.recipientNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recipientNameComboBox.FormattingEnabled = true;
+            this.recipientNameComboBox.Location = new System.Drawing.Point(183, 147);
+            this.recipientNameComboBox.Name = "recipientNameComboBox";
+            this.recipientNameComboBox.Size = new System.Drawing.Size(259, 28);
+            this.recipientNameComboBox.TabIndex = 28;
+            // 
             // OperationWithConsignmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Chocolate;
-            this.ClientSize = new System.Drawing.Size(456, 329);
+            this.ClientSize = new System.Drawing.Size(456, 263);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OperationWithConsignmentForm";
@@ -296,22 +258,18 @@ namespace StoreApp_DB_
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label numberLabel;
         private System.Windows.Forms.Button cancelButton;
-        protected System.Windows.Forms.TextBox recipientSurnameTextBox;
-        protected System.Windows.Forms.TextBox recipientNameTextBox;
-        protected System.Windows.Forms.TextBox supplierSurnameTextBox;
-        protected System.Windows.Forms.TextBox supplierNameTextBox;
-        protected System.Windows.Forms.TextBox dateTextBox;
         protected System.Windows.Forms.TextBox numberTextBox;
         private System.Windows.Forms.Label useIdLabel;
-        private System.Windows.Forms.Label recipientSurnameLabel;
         private System.Windows.Forms.Label recipientNameLabel;
-        private System.Windows.Forms.Label supplierSurnameLabel;
         private System.Windows.Forms.Label supplierNameLabel;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Button button;
-        protected System.Windows.Forms.TextBox recipientIpnTextBox;
-        protected System.Windows.Forms.TextBox supplierIpnTextBox;
         private System.Windows.Forms.Label recipientIpnLabel;
         private System.Windows.Forms.Label supplierIpnLabel;
+        protected System.Windows.Forms.DateTimePicker dateTimePicker;
+        public System.Windows.Forms.ComboBox supplierIpnComboBox;
+        public System.Windows.Forms.ComboBox recipientNameComboBox;
+        public System.Windows.Forms.ComboBox supplierNameComboBox;
+        public System.Windows.Forms.ComboBox recipientIpnComboBox;
     }
 }
