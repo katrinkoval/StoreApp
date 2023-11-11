@@ -30,7 +30,7 @@ namespace StoreApp_DB_
         private void InitializeComponent()
         {
             this.exitButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
             this.passwordLabel = new System.Windows.Forms.Label();
@@ -41,7 +41,7 @@ namespace StoreApp_DB_
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.serverNameTextBox = new System.Windows.Forms.TextBox();
             this.login = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // exitButton
@@ -57,24 +57,24 @@ namespace StoreApp_DB_
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // panel1
+            // mainPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Controls.Add(this.connectButton);
-            this.panel1.Controls.Add(this.passwordLabel);
-            this.panel1.Controls.Add(this.loginLabel);
-            this.panel1.Controls.Add(this.name);
-            this.panel1.Controls.Add(this.serverNameLabel);
-            this.panel1.Controls.Add(this.passwordTextBox);
-            this.panel1.Controls.Add(this.loginTextBox);
-            this.panel1.Controls.Add(this.serverNameTextBox);
-            this.panel1.Controls.Add(this.login);
-            this.panel1.Controls.Add(this.exitButton);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(461, 331);
-            this.panel1.TabIndex = 5;
+            this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.cancelButton);
+            this.mainPanel.Controls.Add(this.connectButton);
+            this.mainPanel.Controls.Add(this.passwordLabel);
+            this.mainPanel.Controls.Add(this.loginLabel);
+            this.mainPanel.Controls.Add(this.name);
+            this.mainPanel.Controls.Add(this.serverNameLabel);
+            this.mainPanel.Controls.Add(this.passwordTextBox);
+            this.mainPanel.Controls.Add(this.loginTextBox);
+            this.mainPanel.Controls.Add(this.serverNameTextBox);
+            this.mainPanel.Controls.Add(this.login);
+            this.mainPanel.Controls.Add(this.exitButton);
+            this.mainPanel.Location = new System.Drawing.Point(3, 3);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(461, 331);
+            this.mainPanel.TabIndex = 5;
             // 
             // cancelButton
             // 
@@ -88,7 +88,6 @@ namespace StoreApp_DB_
             this.cancelButton.TabIndex = 14;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // connectButton
             // 
@@ -102,7 +101,6 @@ namespace StoreApp_DB_
             this.connectButton.TabIndex = 13;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = false;
-            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // passwordLabel
             // 
@@ -186,13 +184,13 @@ namespace StoreApp_DB_
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Chocolate;
             this.ClientSize = new System.Drawing.Size(467, 338);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AuthenticationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Authentication";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -200,7 +198,7 @@ namespace StoreApp_DB_
         #endregion
 
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel mainPanel;
         public System.Windows.Forms.TextBox passwordTextBox;
         public System.Windows.Forms.TextBox loginTextBox;
         public System.Windows.Forms.TextBox serverNameTextBox;
