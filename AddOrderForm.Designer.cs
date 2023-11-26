@@ -29,35 +29,35 @@ namespace StoreApp_DB_
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.numberComboBox = new System.Windows.Forms.ComboBox();
             this.productIDComboBox = new System.Windows.Forms.ComboBox();
-            this.button = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.amountTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.productIdLabel = new System.Windows.Forms.Label();
+            this.consNumLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // mainPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.numberComboBox);
-            this.panel1.Controls.Add(this.productIDComboBox);
-            this.panel1.Controls.Add(this.button);
-            this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Controls.Add(this.amountTextBox);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.exitButton);
-            this.panel1.Location = new System.Drawing.Point(4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(438, 223);
-            this.panel1.TabIndex = 0;
+            this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.numberComboBox);
+            this.mainPanel.Controls.Add(this.productIDComboBox);
+            this.mainPanel.Controls.Add(this.addButton);
+            this.mainPanel.Controls.Add(this.cancelButton);
+            this.mainPanel.Controls.Add(this.amountTextBox);
+            this.mainPanel.Controls.Add(this.amountLabel);
+            this.mainPanel.Controls.Add(this.productIdLabel);
+            this.mainPanel.Controls.Add(this.consNumLabel);
+            this.mainPanel.Controls.Add(this.exitButton);
+            this.mainPanel.Location = new System.Drawing.Point(4, 4);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(438, 223);
+            this.mainPanel.TabIndex = 0;
             // 
             // numberComboBox
             // 
@@ -77,17 +77,16 @@ namespace StoreApp_DB_
             this.productIDComboBox.Size = new System.Drawing.Size(198, 28);
             this.productIDComboBox.TabIndex = 22;
             // 
-            // button
+            // addButton
             // 
-            this.button.BackColor = System.Drawing.Color.Chocolate;
-            this.button.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button.Location = new System.Drawing.Point(68, 183);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(124, 35);
-            this.button.TabIndex = 21;
-            this.button.Text = "Add";
-            this.button.UseVisualStyleBackColor = false;
-            this.button.Click += new System.EventHandler(this.button_Click);
+            this.addButton.BackColor = System.Drawing.Color.Chocolate;
+            this.addButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.addButton.Location = new System.Drawing.Point(68, 183);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(124, 35);
+            this.addButton.TabIndex = 21;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = false;
             // 
             // cancelButton
             // 
@@ -109,42 +108,42 @@ namespace StoreApp_DB_
             this.amountTextBox.TabIndex = 11;
             this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.amountTextBox_KeyPress);
             // 
-            // label3
+            // amountLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(25, 139);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 20);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Amount:";
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.amountLabel.Location = new System.Drawing.Point(25, 139);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(71, 20);
+            this.amountLabel.TabIndex = 8;
+            this.amountLabel.Text = "Amount:";
             // 
-            // label2
+            // productIdLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(25, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 20);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Product ID:";
+            this.productIdLabel.AutoSize = true;
+            this.productIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.productIdLabel.Location = new System.Drawing.Point(25, 102);
+            this.productIdLabel.Name = "productIdLabel";
+            this.productIdLabel.Size = new System.Drawing.Size(94, 20);
+            this.productIdLabel.TabIndex = 7;
+            this.productIdLabel.Text = "Product ID:";
             // 
-            // label1
+            // consNumLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(25, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Consignment Number:";
+            this.consNumLabel.AutoSize = true;
+            this.consNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.consNumLabel.Location = new System.Drawing.Point(25, 64);
+            this.consNumLabel.Name = "consNumLabel";
+            this.consNumLabel.Size = new System.Drawing.Size(176, 20);
+            this.consNumLabel.TabIndex = 6;
+            this.consNumLabel.Text = "Consignment Number:";
             // 
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.White;
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.exitButton.ForeColor = System.Drawing.Color.Black;
-            this.exitButton.Location = new System.Drawing.Point(405, 8);
+            this.exitButton.Location = new System.Drawing.Point(404, 3);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(31, 29);
             this.exitButton.TabIndex = 5;
@@ -158,27 +157,26 @@ namespace StoreApp_DB_
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Chocolate;
             this.ClientSize = new System.Drawing.Size(448, 234);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddOrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddOrderForm";
-            this.Load += new System.EventHandler(this.AddOrderForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.TextBox amountTextBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Label amountLabel;
+        private System.Windows.Forms.Label productIdLabel;
+        private System.Windows.Forms.Label consNumLabel;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.ComboBox productIDComboBox;
         private System.Windows.Forms.ComboBox numberComboBox;

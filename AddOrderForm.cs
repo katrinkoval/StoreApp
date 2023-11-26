@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Models;
+using StoreApp_DB_.Enums;
+using DataAccessLevel;
 
 namespace StoreApp_DB_
 {
@@ -36,43 +39,18 @@ namespace StoreApp_DB_
             Close();
         }
 
-        private void button_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(numberComboBox.SelectedItem.ToString())
-                            || string.IsNullOrWhiteSpace(productIDComboBox.SelectedItem.ToString())
-                                || string.IsNullOrWhiteSpace(amountTextBox.Text))
-            {
-                MessageBox.Show("All fields must be filled");
-            }
-
-            int number = int.Parse(numberComboBox.SelectedItem.ToString());
-
-            string selectedProduct = productIDComboBox.SelectedItem.ToString();
-
-            string prodName = selectedProduct.Substring(0, selectedProduct.IndexOf(" "));
-
-            long productID = _storeDB.GetProductID(prodName);
-
-            double amount = double.Parse(amountTextBox.Text);
-
-            int result = _storeDB.AddOrder(number, productID, amount);
-
-            HandleOperationResult(result);
-
-        }
-
         private void HandleOperationResult(int errorCode)
         {
-            switch (errorCode)
+            switch ((OrderOperationResult)errorCode)
             {
-                case 0:
+                case OrderOperationResult.Successful:
                     MessageBox.Show("Successful operation");
                     Close();
                     break;
-                case 1:
+                case OrderOperationResult.IncorrectConsignmentNumber:
                     MessageBox.Show("Incorrect consignment number");
                     break;
-                case 2:
+                case OrderOperationResult.IncorrectProductID:
                     MessageBox.Show("Incorrect product ID");
                     break;
                 default:
@@ -109,9 +87,5 @@ namespace StoreApp_DB_
             }
         }
 
-        private void AddOrderForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

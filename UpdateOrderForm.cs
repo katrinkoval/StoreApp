@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Models;
+using StoreApp_DB_.Enums;
+using DataAccessLevel;
 
 namespace StoreApp_DB_
 {
@@ -60,13 +56,13 @@ namespace StoreApp_DB_
 
         private void HandleOperationResult(int errorCode)
         {
-            switch (errorCode)
+            switch ((OrderOperationResult)errorCode)
             {
-                case 0:
+                case OrderOperationResult.Successful:
                     MessageBox.Show("Successful operation");
                     Close();
                     break;
-                case 3:
+                case OrderOperationResult.IncorrectProductID:
                     MessageBox.Show("Incorrect new product ID");
                     break;
                 default:

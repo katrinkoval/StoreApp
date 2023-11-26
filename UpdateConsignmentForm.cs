@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using DataAccessLevel;
 
 namespace StoreApp_DB_
 {
@@ -7,9 +7,8 @@ namespace StoreApp_DB_
     {
         public UpdateConsignmentForm(StoreDB storeDB, int number, DateTime date
                                             , string supplierName, string recipientName)
-               : base(date, Query.Update, storeDB)
+               : base(date, QueryType.Update, storeDB)
         {
-            InitializeComponent();
 
             numberTextBox.Text = number.ToString();
             dateTimePicker.Value = date;
@@ -24,9 +23,15 @@ namespace StoreApp_DB_
             this.Height = 263;
         }
 
+        private UpdateConsignmentForm()
+            : base()
+        {
+
+        }
+
         protected override void button_Click(object sender, EventArgs e)
         {
-            executeCommand("UpdateConsignment");
+            ExecuteCommand("UpdateConsignment");
         }
     }
 }

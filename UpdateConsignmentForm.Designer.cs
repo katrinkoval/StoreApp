@@ -1,7 +1,7 @@
 ﻿
 namespace StoreApp_DB_
 {
-    partial class UpdateConsignmentForm
+    partial class UpdateConsignmentForm: OperationWithConsignmentForm
     {
         /// <summary>
         /// Required designer variable.

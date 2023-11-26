@@ -163,6 +163,7 @@ namespace StoreApp_DB_
             this.dgvConsignments.Size = new System.Drawing.Size(338, 518);
             this.dgvConsignments.TabIndex = 0;
             this.dgvConsignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsignments_CellClick);
+            this.dgvConsignments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvConsignments_MouseDown);
             // 
             // panel7
             // 

@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using Models;
+using StoreApp_DB_.Enums;
+using DataAccessLevel;
 
 namespace StoreApp_DB_
 {
@@ -11,7 +12,8 @@ namespace StoreApp_DB_
         protected bool _isUsingIPN;
         protected StoreDB _storeDB;
 
-        public OperationWithConsignmentForm(DateTime consigmentDate, Query option, StoreDB storeDB)
+        public OperationWithConsignmentForm(DateTime consigmentDate, QueryType option, StoreDB storeDB)
+            :base()
         {
             _storeDB = storeDB;
 
@@ -42,8 +44,8 @@ namespace StoreApp_DB_
 
         }
 
-        private OperationWithConsignmentForm()
-            : this(DateTime.Now, Query.Add, null)
+        protected OperationWithConsignmentForm()
+            : this(DateTime.Now, QueryType.Add, null)
         {
         }
 
@@ -58,9 +60,9 @@ namespace StoreApp_DB_
 
         }
 
-        protected void executeCommand(string commandText)
+        protected void ExecuteCommand(string commandText)
         {
-            if (!validateInputedData())
+            if (!ValidateInputedData())
             {
                 return;
             }
@@ -89,28 +91,25 @@ namespace StoreApp_DB_
 
         private void HandleOperationResult(int errorCode)
         {
-            switch (errorCode)
+            switch ((ConsignmentOperationResult)errorCode)
             {
-                case 0:
+                case ConsignmentOperationResult.Successful:
                     MessageBox.Show("Successful operation");
                     Close();
                     break;
-                case 1:
+                case ConsignmentOperationResult.IncorrectConsignmentNumber:
                     MessageBox.Show("Incorrect consignment number");
                     break;
-                case 2:
-                    MessageBox.Show("You must input the first and last name or IPN of the supplier and recipient");
-                    break;
-                case 3:
+                case ConsignmentOperationResult.IncorrectSupplierName:
                     MessageBox.Show("Incorrect name of supplier");
                     break;
-                case 4:
+                case ConsignmentOperationResult.IncorrectRecipientName:
                     MessageBox.Show("Incorrect name of recipient");
                     break;
-                case 5:
+                case ConsignmentOperationResult.IncorrectSupplierIPN:
                     MessageBox.Show("Incorrect IPN of supplier");
                     break;
-                case 6:
+                case ConsignmentOperationResult.IncorrectRecipientIPN:
                     MessageBox.Show("Incorrect IPN of recipient");
                     break;
                 default:
@@ -122,7 +121,7 @@ namespace StoreApp_DB_
         {
         }
 
-        protected bool validateInputedData()
+        protected bool ValidateInputedData()
         {
             if (string.IsNullOrWhiteSpace(numberTextBox.Text))
             {

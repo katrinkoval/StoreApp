@@ -5,34 +5,18 @@ namespace StoreApp_DB_
 {
     public partial class AuthenticationForm : Form
     {
-        private string defaultUserName = "User";
-        private string defaultServerName = "localhost\\sqlexpress";
+        private const string DEFAULT_USER_NAME = "User";
+        private const string DEFAULT_SERVER_NAME = "localhost\\sqlexpress";
         public AuthenticationForm()
         {
             InitializeComponent();
 
-            serverNameTextBox.Text = defaultServerName;
-            loginTextBox.Text = defaultUserName;
+            serverNameTextBox.Text = DEFAULT_SERVER_NAME;
+            loginTextBox.Text = DEFAULT_USER_NAME;
             passwordTextBox.Select();
         }
 
-        private void connectButton_Click(object sender, EventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(serverNameTextBox.Text) || string.IsNullOrWhiteSpace(loginTextBox.Text)
-                                || string.IsNullOrWhiteSpace(passwordTextBox.Text))
-            {
-                MessageBox.Show("All fields must be filled");
-                return;
-            }
-
-        }
-
         private void exitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }

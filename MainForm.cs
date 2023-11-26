@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
+using StoreApp_DB_.Enums;
+using Models;
+using DataAccessLevel;
 
 namespace StoreApp_DB_
 {
     public partial class MainForm : Form
     {
         private StoreDB _storeDB;
-
+        
         public MainForm(StoreDB storeDB)
         {
             _storeDB = storeDB;
+            TotalPriceChangeManager.EventHandler = new TotalPriceChangeManager.TotalPriceChanged(TotalPriceChangedEventHandler);
 
             InitializeComponent();
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -161,7 +164,7 @@ namespace StoreApp_DB_
 
             int result = _storeDB.DeleteConsignment(consignmentNumber);
 
-            HandleDeletingResult(result);
+            HandleDeletionResult(result);
 
             if (result == 0)
             {
@@ -223,7 +226,7 @@ namespace StoreApp_DB_
 
             int result = _storeDB.DeleteOrder(consignmentNumber, productID);
 
-            HandleDeletingResult(result);
+            HandleDeletionResult(result);
 
             if(result == 0)
             {
@@ -278,25 +281,25 @@ namespace StoreApp_DB_
             Close();
         }
 
-        private void HandleDeletingResult(int errorCode)
+        private void HandleDeletionResult(int errorCode)
         {
-            switch (errorCode)
+            switch ((DeletionResult)errorCode)
             {
-                case 0:
+                case DeletionResult.Successful:
                     MessageBox.Show("Successful operation");
                     break;
-                case 1:
+                case DeletionResult.IncorrectConsignmentNumber:
                     MessageBox.Show("Incorrect consignment number");
                     break;
-                case 2:
-                    MessageBox.Show("You cannot delete this order");
+                case DeletionResult.ImpossibleDeletion:
+                    MessageBox.Show("You cannot delete this record");
                     break;
-                case 3:
+                case DeletionResult.IncorrectProductName:
                     MessageBox.Show("Incorrect product name");
                     break;
                 default:
                     break;
-            }
+            }           
         }
 
         private bool ConfirmDeleting(string message)
@@ -324,6 +327,44 @@ namespace StoreApp_DB_
             else
             {
                 this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void TotalPriceChangedEventHandler(double persentage, PriceChanging option)
+        {
+            dvgOrders.Rows.Clear();
+
+            int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
+
+            var orders = _storeDB.GetConsignmentsOrders(consignmentNumber);
+
+            switch (option)
+            {
+                case PriceChanging.Increase:
+                    orders = orders.GetOrdersWithIncrease(persentage);                    
+                    break;
+                case PriceChanging.Decrease:
+                    orders = orders.GetOrdersWithDiscount(persentage);
+                    break;
+                default:
+                    break;
+            }
+
+            foreach (Order order in orders)
+            {
+                dvgOrders.Rows.Add(order.ConsignmentNumber, order.Product, order.Price
+                            , order.Amount, order.UnitType, order.TotalPrice);
+            }
+        }
+
+        private void dgvConsignments_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
+
+                ChangeTotalPriceForm changeTotalPriceForm = new ChangeTotalPriceForm(consignmentNumber);
+                changeTotalPriceForm.Show();
             }
         }
     }
