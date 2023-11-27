@@ -8,9 +8,9 @@ namespace StoreApp_DB_
 {
     public partial class UpdateOrderForm : Form
     {
-        private StoreDB _storeDB;
-        private int _consNumber;
-        private string _productName;
+        private readonly StoreDB _storeDB;
+        private readonly int _consNumber;
+        private readonly string _productName;
 
         public UpdateOrderForm(StoreDB storeDB, int consNumber, string prodName, double amount, string unitType)
         {
@@ -33,7 +33,7 @@ namespace StoreApp_DB_
             productComboBox.SelectedIndex = 0;
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
             if (!double.TryParse(amountTextBox.Text, out double amount))
             {
@@ -70,17 +70,12 @@ namespace StoreApp_DB_
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {

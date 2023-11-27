@@ -21,15 +21,16 @@ namespace StoreApp_DB_
 
             this.Width = 456;
             this.Height = 263;
+
+            InitializeComponent();
         }
 
         private UpdateConsignmentForm()
-            : base()
         {
 
         }
 
-        protected override void button_Click(object sender, EventArgs e)
+        protected override void ActionButton_Click(object sender, EventArgs e)
         {
             ExecuteCommand("UpdateConsignment");
         }

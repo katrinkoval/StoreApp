@@ -16,7 +16,7 @@ namespace StoreApp_DB_
             passwordTextBox.Select();
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }

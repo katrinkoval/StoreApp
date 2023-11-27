@@ -9,7 +9,7 @@ namespace StoreApp_DB_
     public partial class AddOrderForm : Form
     {
 
-        private StoreDB _storeDB;
+        private readonly StoreDB _storeDB;
 
         public AddOrderForm(StoreDB storeDB, int consNumber)
         {
@@ -34,7 +34,7 @@ namespace StoreApp_DB_
             numberComboBox.SelectedIndex = numberComboBox.FindString(consNumber.ToString());
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -58,12 +58,12 @@ namespace StoreApp_DB_
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void numberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -71,7 +71,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void productTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void ProductTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -79,7 +79,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {

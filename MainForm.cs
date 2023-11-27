@@ -8,7 +8,7 @@ namespace StoreApp_DB_
 {
     public partial class MainForm : Form
     {
-        private StoreDB _storeDB;
+        private readonly StoreDB _storeDB;
         
         public MainForm(StoreDB storeDB)
         {
@@ -111,7 +111,7 @@ namespace StoreApp_DB_
 
         #region === CRUD Consignments ===
 
-        private void updateConsignment_Click(object sender, EventArgs e)
+        private void UpdateConsignment_Click(object sender, EventArgs e)
         {
             int number = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
             DateTime date = DateTime.Parse(dgvConsignments.CurrentRow.Cells[1].Value.ToString());
@@ -127,7 +127,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void addConsignment_Click(object sender, EventArgs e)
+        private void AddConsignment_Click(object sender, EventArgs e)
         {
             OperationWithConsignmentForm addForm = new AddConsignmentForm(_storeDB);
             
@@ -149,7 +149,7 @@ namespace StoreApp_DB_
 
         }
 
-        private void removeConsignment_Click(object sender, EventArgs e)
+        private void RemoveConsignment_Click(object sender, EventArgs e)
         {
             int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
 
@@ -179,7 +179,7 @@ namespace StoreApp_DB_
 
         #region === CRUD Orders ===
 
-        private void addOrderButton_Click(object sender, EventArgs e)
+        private void AddOrderButton_Click(object sender, EventArgs e)
         {
             int consignmentNumber = int.Parse(dgvConsignments.CurrentRow.Cells[0].Value.ToString());
 
@@ -191,7 +191,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void updateOrder_Click(object sender, EventArgs e)
+        private void UpdateOrder_Click(object sender, EventArgs e)
         {
             int number = int.Parse(dvgOrders.CurrentRow.Cells[0].Value.ToString());
             string productName = dvgOrders.CurrentRow.Cells[1].Value.ToString();
@@ -208,7 +208,7 @@ namespace StoreApp_DB_
 
         }
 
-        private void deleteOrder_Click(object sender, EventArgs e)
+        private void DeleteOrder_Click(object sender, EventArgs e)
         {
             int consignmentNumber = int.Parse(dvgOrders.CurrentRow.Cells[0].Value.ToString());
 
@@ -236,7 +236,7 @@ namespace StoreApp_DB_
 
         #endregion
 
-        private void showOrdersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ShowOrdersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (showOrdersComboBox.SelectedIndex == 0)
             {
@@ -269,12 +269,12 @@ namespace StoreApp_DB_
             }
         }
 
-        private void dgvConsignments_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvConsignments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             FillOrdersDGV();
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             _storeDB.CloseConnection();
 
@@ -318,7 +318,7 @@ namespace StoreApp_DB_
             return false;
         }
 
-        private void allwindowButton_Click(object sender, EventArgs e)
+        private void MaximizeWindowButton_Click(object sender, EventArgs e)
         {
             if (this.WindowState != FormWindowState.Maximized)
             {
@@ -357,7 +357,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void dgvConsignments_MouseDown(object sender, MouseEventArgs e)
+        private void DgvConsignments_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {

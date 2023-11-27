@@ -21,7 +21,7 @@ namespace StoreApp_DB_
         }
 
 
-        protected override void button_Click(object sender, EventArgs e)
+        protected override void ActionButton_Click(object sender, EventArgs e)
         {
             ExecuteCommand("AddConsignment2");
         }

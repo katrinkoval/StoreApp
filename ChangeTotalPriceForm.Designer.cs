@@ -60,7 +60,7 @@ namespace StoreApp_DB_
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // increaseCheckBox
             // 
@@ -72,7 +72,7 @@ namespace StoreApp_DB_
             this.increaseCheckBox.TabIndex = 5;
             this.increaseCheckBox.Text = "Increase total price";
             this.increaseCheckBox.UseVisualStyleBackColor = true;
-            this.increaseCheckBox.CheckedChanged += new System.EventHandler(this.increaseCheckBox_CheckedChanged);
+            this.increaseCheckBox.CheckedChanged += new System.EventHandler(this.IncreaseCheckBox_CheckedChanged);
             // 
             // decreaseCheckBox
             // 
@@ -84,7 +84,7 @@ namespace StoreApp_DB_
             this.decreaseCheckBox.TabIndex = 6;
             this.decreaseCheckBox.Text = "Decrease total price";
             this.decreaseCheckBox.UseVisualStyleBackColor = true;
-            this.decreaseCheckBox.CheckedChanged += new System.EventHandler(this.decreaseCheckBox_CheckedChanged);
+            this.decreaseCheckBox.CheckedChanged += new System.EventHandler(this.DecreaseCheckBox_CheckedChanged);
             // 
             // percentageLabel
             // 
@@ -103,7 +103,7 @@ namespace StoreApp_DB_
             this.percentageTextBox.Name = "percentageTextBox";
             this.percentageTextBox.Size = new System.Drawing.Size(181, 27);
             this.percentageTextBox.TabIndex = 8;
-            this.percentageTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.percentageTextBox_KeyPress);
+            this.percentageTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentageTextBox_KeyPress);
             // 
             // applyButton
             // 
@@ -114,7 +114,7 @@ namespace StoreApp_DB_
             this.applyButton.TabIndex = 23;
             this.applyButton.Text = "Add";
             this.applyButton.UseVisualStyleBackColor = false;
-            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            this.applyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // cancelButton
             // 
@@ -124,7 +124,7 @@ namespace StoreApp_DB_
             this.cancelButton.TabIndex = 22;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ChangeTotalPriceForm
             // 
