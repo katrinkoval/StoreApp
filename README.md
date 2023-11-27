@@ -1,9 +1,9 @@
-# StoreApp  
+# StoreApp  - Store Management Application
 
 ## Overview
 This is an educational project developed using Windows Forms and ADO.NET. The database is created in the MS SQL Server. 
 
-The application is designed for managing a store, and its functionality includes the following:
+The application is designed for managing a store, its functionality includes the following:
 - adding, modifying, deleting consignments and orders within those consignments
 - modifying the final prices of consignments
 
