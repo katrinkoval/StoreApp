@@ -15,9 +15,9 @@ namespace StoreApp_DB_
         public OperationWithConsignmentForm(DateTime consigmentDate, QueryType option, StoreDB storeDB)
             :base()
         {
-            _storeDB = storeDB;
+            InitializeComponent();
 
-            //InitializeComponent();
+            _storeDB = storeDB;
 
             supplierIpnComboBox.Visible = false;
             recipientIpnComboBox.Visible = false;
@@ -29,26 +29,27 @@ namespace StoreApp_DB_
             dateTimePicker.Value = consigmentDate;
             ActionButton.Text = option.ToString();
 
-            foreach (string name in _storeDB.GetIndividualNames())
+            if (_storeDB != null)
             {
-                supplierNameComboBox.Items.Add(name);
-                recipientNameComboBox.Items.Add(name);
-            }
+                foreach (string name in _storeDB.GetIndividualNames())
+                {
+                    supplierNameComboBox.Items.Add(name);
+                    recipientNameComboBox.Items.Add(name);
+                }
 
-
-            foreach (long id in _storeDB.GetIndividualIDs())
-            {
-                supplierIpnComboBox.Items.Add(id);
-                recipientIpnComboBox.Items.Add(id);
+                foreach (long id in _storeDB.GetIndividualIDs())
+                {
+                    supplierIpnComboBox.Items.Add(id);
+                    recipientIpnComboBox.Items.Add(id);
+                }
             }
 
         }
 
-        protected OperationWithConsignmentForm()
+        public OperationWithConsignmentForm()
             : this(DateTime.Now, QueryType.Add, null)
         {
         }
-
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -216,6 +217,7 @@ namespace StoreApp_DB_
                 e.Handled = true;
             }
         }
+
 
     }
 }
