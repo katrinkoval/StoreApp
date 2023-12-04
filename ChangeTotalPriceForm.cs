@@ -24,13 +24,13 @@ namespace StoreApp_DB_
 
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
 
-        private void applyButton_Click(object sender, EventArgs e)
+        private void ApplyButton_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(percentageTextBox.Text))
             {
@@ -60,12 +60,12 @@ namespace StoreApp_DB_
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void increaseCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void IncreaseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if(increaseCheckBox.Checked)
             {
@@ -73,7 +73,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void decreaseCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void DecreaseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if(decreaseCheckBox.Checked)
             {
@@ -81,7 +81,7 @@ namespace StoreApp_DB_
             }
         }
 
-        private void percentageTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void PercentageTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {

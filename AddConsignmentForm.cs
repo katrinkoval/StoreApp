@@ -10,9 +10,6 @@ namespace StoreApp_DB_
         {
             InitializeComponent();
 
-            this.Width = 456; 
-            this.Height = 263;
-
             supplierNameComboBox.SelectedItem = supplierNameComboBox.Items[0];
             recipientNameComboBox.SelectedItem = recipientNameComboBox.Items[0];
 
@@ -21,7 +18,7 @@ namespace StoreApp_DB_
         }
 
 
-        protected override void button_Click(object sender, EventArgs e)
+        protected override void ActionButton_Click(object sender, EventArgs e)
         {
             ExecuteCommand("AddConsignment2");
         }

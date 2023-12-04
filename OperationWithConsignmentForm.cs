@@ -15,9 +15,9 @@ namespace StoreApp_DB_
         public OperationWithConsignmentForm(DateTime consigmentDate, QueryType option, StoreDB storeDB)
             :base()
         {
-            _storeDB = storeDB;
-
             InitializeComponent();
+
+            _storeDB = storeDB;
 
             supplierIpnComboBox.Visible = false;
             recipientIpnComboBox.Visible = false;
@@ -27,34 +27,31 @@ namespace StoreApp_DB_
             _isUsingIPN = false;
 
             dateTimePicker.Value = consigmentDate;
-            button.Text = option.ToString();
+            ActionButton.Text = option.ToString();
 
-            foreach (string name in _storeDB.GetIndividualNames())
+            if (_storeDB != null)
             {
-                supplierNameComboBox.Items.Add(name);
-                recipientNameComboBox.Items.Add(name);
-            }
+                foreach (string name in _storeDB.GetIndividualNames())
+                {
+                    supplierNameComboBox.Items.Add(name);
+                    recipientNameComboBox.Items.Add(name);
+                }
 
-
-            foreach (long id in _storeDB.GetIndividualIDs())
-            {
-                supplierIpnComboBox.Items.Add(id);
-                recipientIpnComboBox.Items.Add(id);
+                foreach (long id in _storeDB.GetIndividualIDs())
+                {
+                    supplierIpnComboBox.Items.Add(id);
+                    recipientIpnComboBox.Items.Add(id);
+                }
             }
 
         }
 
-        protected OperationWithConsignmentForm()
+        public OperationWithConsignmentForm()
             : this(DateTime.Now, QueryType.Add, null)
         {
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
 
@@ -117,7 +114,7 @@ namespace StoreApp_DB_
             }
         }
 
-        protected virtual void button_Click(object sender, EventArgs e)
+        protected virtual void ActionButton_Click(object sender, EventArgs e)
         {
         }
 
@@ -149,7 +146,7 @@ namespace StoreApp_DB_
 
         }
 
-        private void useIdLabel_Click(object sender, EventArgs e)
+        private void UseIdLabel_Click(object sender, EventArgs e)
         {   if (_isUsingIPN)
             {
                 useIdLabel.Text = "Use IPN";
@@ -203,23 +200,24 @@ namespace StoreApp_DB_
             }
         }
 
-        private void useIdLabel_MouseEnter(object sender, EventArgs e)
+        private void UseIdLabel_MouseEnter(object sender, EventArgs e)
         {
             useIdLabel.BackColor = Color.DarkOrange;
         }
 
-        private void useIdLabel_MouseLeave(object sender, EventArgs e)
+        private void UseIdLabel_MouseLeave(object sender, EventArgs e)
         {
             useIdLabel.BackColor = Color.White;
         }
 
-        private void numberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
+
 
     }
 }

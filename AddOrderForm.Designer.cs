@@ -97,7 +97,7 @@ namespace StoreApp_DB_
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // amountTextBox
             // 
@@ -106,7 +106,7 @@ namespace StoreApp_DB_
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(198, 27);
             this.amountTextBox.TabIndex = 11;
-            this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.amountTextBox_KeyPress);
+            this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AmountTextBox_KeyPress);
             // 
             // amountLabel
             // 
@@ -149,7 +149,7 @@ namespace StoreApp_DB_
             this.exitButton.TabIndex = 5;
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // AddOrderForm
             // 

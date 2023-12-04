@@ -31,10 +31,14 @@ namespace StoreApp_DB_
         {
             this.exitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.recipientNameComboBox = new System.Windows.Forms.ComboBox();
+            this.supplierNameComboBox = new System.Windows.Forms.ComboBox();
+            this.recipientIpnComboBox = new System.Windows.Forms.ComboBox();
+            this.supplierIpnComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.recipientIpnLabel = new System.Windows.Forms.Label();
             this.supplierIpnLabel = new System.Windows.Forms.Label();
-            this.button = new System.Windows.Forms.Button();
+            this.ActionButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.numberTextBox = new System.Windows.Forms.TextBox();
             this.useIdLabel = new System.Windows.Forms.Label();
@@ -42,10 +46,6 @@ namespace StoreApp_DB_
             this.supplierNameLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
             this.numberLabel = new System.Windows.Forms.Label();
-            this.supplierIpnComboBox = new System.Windows.Forms.ComboBox();
-            this.recipientIpnComboBox = new System.Windows.Forms.ComboBox();
-            this.supplierNameComboBox = new System.Windows.Forms.ComboBox();
-            this.recipientNameComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@ namespace StoreApp_DB_
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // panel1
             // 
@@ -72,7 +72,7 @@ namespace StoreApp_DB_
             this.panel1.Controls.Add(this.dateTimePicker);
             this.panel1.Controls.Add(this.recipientIpnLabel);
             this.panel1.Controls.Add(this.supplierIpnLabel);
-            this.panel1.Controls.Add(this.button);
+            this.panel1.Controls.Add(this.ActionButton);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.numberTextBox);
             this.panel1.Controls.Add(this.useIdLabel);
@@ -85,6 +85,42 @@ namespace StoreApp_DB_
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(449, 255);
             this.panel1.TabIndex = 5;
+            // 
+            // recipientNameComboBox
+            // 
+            this.recipientNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recipientNameComboBox.FormattingEnabled = true;
+            this.recipientNameComboBox.Location = new System.Drawing.Point(183, 147);
+            this.recipientNameComboBox.Name = "recipientNameComboBox";
+            this.recipientNameComboBox.Size = new System.Drawing.Size(259, 28);
+            this.recipientNameComboBox.TabIndex = 28;
+            // 
+            // supplierNameComboBox
+            // 
+            this.supplierNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supplierNameComboBox.FormattingEnabled = true;
+            this.supplierNameComboBox.Location = new System.Drawing.Point(183, 115);
+            this.supplierNameComboBox.Name = "supplierNameComboBox";
+            this.supplierNameComboBox.Size = new System.Drawing.Size(258, 28);
+            this.supplierNameComboBox.TabIndex = 27;
+            // 
+            // recipientIpnComboBox
+            // 
+            this.recipientIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recipientIpnComboBox.FormattingEnabled = true;
+            this.recipientIpnComboBox.Location = new System.Drawing.Point(183, 147);
+            this.recipientIpnComboBox.Name = "recipientIpnComboBox";
+            this.recipientIpnComboBox.Size = new System.Drawing.Size(258, 28);
+            this.recipientIpnComboBox.TabIndex = 26;
+            // 
+            // supplierIpnComboBox
+            // 
+            this.supplierIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supplierIpnComboBox.FormattingEnabled = true;
+            this.supplierIpnComboBox.Location = new System.Drawing.Point(183, 115);
+            this.supplierIpnComboBox.Name = "supplierIpnComboBox";
+            this.supplierIpnComboBox.Size = new System.Drawing.Size(258, 28);
+            this.supplierIpnComboBox.TabIndex = 25;
             // 
             // dateTimePicker
             // 
@@ -115,17 +151,16 @@ namespace StoreApp_DB_
             this.supplierIpnLabel.TabIndex = 20;
             this.supplierIpnLabel.Text = "Supplier IPN:";
             // 
-            // button
+            // ActionButton
             // 
-            this.button.BackColor = System.Drawing.Color.Chocolate;
-            this.button.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button.Location = new System.Drawing.Point(81, 205);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(124, 35);
-            this.button.TabIndex = 19;
-            this.button.Text = "button1";
-            this.button.UseVisualStyleBackColor = false;
-            this.button.Click += new System.EventHandler(this.button_Click);
+            this.ActionButton.BackColor = System.Drawing.Color.Chocolate;
+            this.ActionButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.ActionButton.Location = new System.Drawing.Point(81, 205);
+            this.ActionButton.Name = "ActionButton";
+            this.ActionButton.Size = new System.Drawing.Size(124, 35);
+            this.ActionButton.TabIndex = 19;
+            this.ActionButton.UseVisualStyleBackColor = false;
+            this.ActionButton.Click += new System.EventHandler(this.ActionButton_Click);
             // 
             // cancelButton
             // 
@@ -136,7 +171,6 @@ namespace StoreApp_DB_
             this.cancelButton.TabIndex = 18;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // numberTextBox
             // 
@@ -145,7 +179,7 @@ namespace StoreApp_DB_
             this.numberTextBox.Name = "numberTextBox";
             this.numberTextBox.Size = new System.Drawing.Size(257, 27);
             this.numberTextBox.TabIndex = 12;
-            this.numberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberTextBox_KeyPress);
+            this.numberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberTextBox_KeyPress);
             // 
             // useIdLabel
             // 
@@ -155,9 +189,9 @@ namespace StoreApp_DB_
             this.useIdLabel.Size = new System.Drawing.Size(63, 17);
             this.useIdLabel.TabIndex = 11;
             this.useIdLabel.Text = "Use IPN ";
-            this.useIdLabel.Click += new System.EventHandler(this.useIdLabel_Click);
-            this.useIdLabel.MouseEnter += new System.EventHandler(this.useIdLabel_MouseEnter);
-            this.useIdLabel.MouseLeave += new System.EventHandler(this.useIdLabel_MouseLeave);
+            this.useIdLabel.Click += new System.EventHandler(this.UseIdLabel_Click);
+            this.useIdLabel.MouseEnter += new System.EventHandler(this.UseIdLabel_MouseEnter);
+            this.useIdLabel.MouseLeave += new System.EventHandler(this.UseIdLabel_MouseLeave);
             // 
             // recipientNameLabel
             // 
@@ -199,42 +233,6 @@ namespace StoreApp_DB_
             this.numberLabel.TabIndex = 5;
             this.numberLabel.Text = "Number:";
             // 
-            // supplierIpnComboBox
-            // 
-            this.supplierIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierIpnComboBox.FormattingEnabled = true;
-            this.supplierIpnComboBox.Location = new System.Drawing.Point(183, 115);
-            this.supplierIpnComboBox.Name = "supplierIpnComboBox";
-            this.supplierIpnComboBox.Size = new System.Drawing.Size(258, 28);
-            this.supplierIpnComboBox.TabIndex = 25;
-            // 
-            // recipientIpnComboBox
-            // 
-            this.recipientIpnComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientIpnComboBox.FormattingEnabled = true;
-            this.recipientIpnComboBox.Location = new System.Drawing.Point(183, 147);
-            this.recipientIpnComboBox.Name = "recipientIpnComboBox";
-            this.recipientIpnComboBox.Size = new System.Drawing.Size(258, 28);
-            this.recipientIpnComboBox.TabIndex = 26;
-            // 
-            // supplierNameComboBox
-            // 
-            this.supplierNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supplierNameComboBox.FormattingEnabled = true;
-            this.supplierNameComboBox.Location = new System.Drawing.Point(183, 115);
-            this.supplierNameComboBox.Name = "supplierNameComboBox";
-            this.supplierNameComboBox.Size = new System.Drawing.Size(258, 28);
-            this.supplierNameComboBox.TabIndex = 27;
-            // 
-            // recipientNameComboBox
-            // 
-            this.recipientNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.recipientNameComboBox.FormattingEnabled = true;
-            this.recipientNameComboBox.Location = new System.Drawing.Point(183, 147);
-            this.recipientNameComboBox.Name = "recipientNameComboBox";
-            this.recipientNameComboBox.Size = new System.Drawing.Size(259, 28);
-            this.recipientNameComboBox.TabIndex = 28;
-            // 
             // OperationWithConsignmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -263,7 +261,7 @@ namespace StoreApp_DB_
         private System.Windows.Forms.Label recipientNameLabel;
         private System.Windows.Forms.Label supplierNameLabel;
         private System.Windows.Forms.Label dateLabel;
-        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Button ActionButton;
         private System.Windows.Forms.Label recipientIpnLabel;
         private System.Windows.Forms.Label supplierIpnLabel;
         protected System.Windows.Forms.DateTimePicker dateTimePicker;

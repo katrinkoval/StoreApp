@@ -79,7 +79,7 @@ namespace StoreApp_DB_
             this.updateButton.TabIndex = 21;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // cancelButton
             // 
@@ -90,7 +90,6 @@ namespace StoreApp_DB_
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // amountTextBox
             // 
@@ -99,7 +98,7 @@ namespace StoreApp_DB_
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(98, 27);
             this.amountTextBox.TabIndex = 8;
-            this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.amountTextBox_KeyPress);
+            this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AmountTextBox_KeyPress);
             // 
             // productComboBox
             // 
@@ -121,7 +120,7 @@ namespace StoreApp_DB_
             this.exitButton.TabIndex = 5;
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // label3
             // 

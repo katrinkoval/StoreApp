@@ -9,6 +9,7 @@ namespace StoreApp_DB_
                                             , string supplierName, string recipientName)
                : base(date, QueryType.Update, storeDB)
         {
+            InitializeComponent();
 
             numberTextBox.Text = number.ToString();
             dateTimePicker.Value = date;
@@ -19,17 +20,9 @@ namespace StoreApp_DB_
             supplierIpnComboBox.Text = storeDB.GetIPNByName(supplierName).ToString();
             recipientIpnComboBox.Text = storeDB.GetIPNByName(recipientName).ToString();
 
-            this.Width = 456;
-            this.Height = 263;
         }
 
-        private UpdateConsignmentForm()
-            : base()
-        {
-
-        }
-
-        protected override void button_Click(object sender, EventArgs e)
+        protected override void ActionButton_Click(object sender, EventArgs e)
         {
             ExecuteCommand("UpdateConsignment");
         }

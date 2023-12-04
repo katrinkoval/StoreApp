@@ -35,7 +35,7 @@ namespace StoreApp_DB_
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 329);
+            this.ClientSize = new System.Drawing.Size(456, 263);
             this.Name = "AddConsignmentForm";
             this.Text = "AddingForm";
             this.ResumeLayout(false);

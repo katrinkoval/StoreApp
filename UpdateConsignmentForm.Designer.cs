@@ -1,7 +1,7 @@
 ﻿
 namespace StoreApp_DB_
 {
-    partial class UpdateConsignmentForm: OperationWithConsignmentForm
+    partial class UpdateConsignmentForm : OperationWithConsignmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -21,6 +21,7 @@ namespace StoreApp_DB_
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace StoreApp_DB_
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 328);
+            this.ClientSize = new System.Drawing.Size(456, 263);
             this.Name = "UpdateConsignmentForm";
             this.Text = "UpdateConsignmentForm";
             this.ResumeLayout(false);

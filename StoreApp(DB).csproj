@@ -157,15 +157,14 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLevel\DataAccessLevel.csproj">
+    <ProjectReference Include="DataAccessLevel\DataAccessLevel.csproj">
       <Project>{a40f50a7-db63-4589-b31d-15f6d0b1e036}</Project>
       <Name>DataAccessLevel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="Models\Models.csproj">
       <Project>{59af204f-4dfc-4c95-b33f-b89ef7f24745}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

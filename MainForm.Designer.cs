@@ -91,7 +91,7 @@ namespace StoreApp_DB_
             this.allwindowButton.Size = new System.Drawing.Size(33, 29);
             this.allwindowButton.TabIndex = 16;
             this.allwindowButton.UseVisualStyleBackColor = false;
-            this.allwindowButton.Click += new System.EventHandler(this.allwindowButton_Click);
+            this.allwindowButton.Click += new System.EventHandler(this.MaximizeWindowButton_Click);
             // 
             // showOrdersComboBox
             // 
@@ -104,7 +104,7 @@ namespace StoreApp_DB_
             this.showOrdersComboBox.Name = "showOrdersComboBox";
             this.showOrdersComboBox.Size = new System.Drawing.Size(241, 28);
             this.showOrdersComboBox.TabIndex = 12;
-            this.showOrdersComboBox.SelectedIndexChanged += new System.EventHandler(this.showOrdersComboBox_SelectedIndexChanged);
+            this.showOrdersComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowOrdersComboBox_SelectedIndexChanged);
             // 
             // name
             // 
@@ -130,7 +130,7 @@ namespace StoreApp_DB_
             this.exitButton.TabIndex = 3;
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // panel1
             // 
@@ -162,8 +162,8 @@ namespace StoreApp_DB_
             this.dgvConsignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsignments.Size = new System.Drawing.Size(338, 518);
             this.dgvConsignments.TabIndex = 0;
-            this.dgvConsignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsignments_CellClick);
-            this.dgvConsignments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvConsignments_MouseDown);
+            this.dgvConsignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsignments_CellClick);
+            this.dgvConsignments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DgvConsignments_MouseDown);
             // 
             // panel7
             // 
@@ -202,7 +202,7 @@ namespace StoreApp_DB_
             this.addConsignment.TabIndex = 5;
             this.addConsignment.Text = "Add new consignment";
             this.addConsignment.UseVisualStyleBackColor = false;
-            this.addConsignment.Click += new System.EventHandler(this.addConsignment_Click);
+            this.addConsignment.Click += new System.EventHandler(this.AddConsignment_Click);
             // 
             // removeConsignment
             // 
@@ -217,7 +217,7 @@ namespace StoreApp_DB_
             this.removeConsignment.TabIndex = 7;
             this.removeConsignment.Text = "Delete consignment";
             this.removeConsignment.UseVisualStyleBackColor = false;
-            this.removeConsignment.Click += new System.EventHandler(this.removeConsignment_Click);
+            this.removeConsignment.Click += new System.EventHandler(this.RemoveConsignment_Click);
             // 
             // updateConsignment
             // 
@@ -232,7 +232,7 @@ namespace StoreApp_DB_
             this.updateConsignment.TabIndex = 6;
             this.updateConsignment.Text = "Update consignment";
             this.updateConsignment.UseVisualStyleBackColor = false;
-            this.updateConsignment.Click += new System.EventHandler(this.updateConsignment_Click);
+            this.updateConsignment.Click += new System.EventHandler(this.UpdateConsignment_Click);
             // 
             // addOrderButton
             // 
@@ -247,7 +247,7 @@ namespace StoreApp_DB_
             this.addOrderButton.TabIndex = 10;
             this.addOrderButton.Text = "Add order";
             this.addOrderButton.UseVisualStyleBackColor = false;
-            this.addOrderButton.Click += new System.EventHandler(this.addOrderButton_Click);
+            this.addOrderButton.Click += new System.EventHandler(this.AddOrderButton_Click);
             // 
             // deleteOrder
             // 
@@ -263,7 +263,7 @@ namespace StoreApp_DB_
             this.deleteOrder.TabIndex = 11;
             this.deleteOrder.Text = "Delete order";
             this.deleteOrder.UseVisualStyleBackColor = false;
-            this.deleteOrder.Click += new System.EventHandler(this.deleteOrder_Click);
+            this.deleteOrder.Click += new System.EventHandler(this.DeleteOrder_Click);
             // 
             // updateOrder
             // 
@@ -278,7 +278,7 @@ namespace StoreApp_DB_
             this.updateOrder.TabIndex = 13;
             this.updateOrder.Text = "Update order";
             this.updateOrder.UseVisualStyleBackColor = false;
-            this.updateOrder.Click += new System.EventHandler(this.updateOrder_Click);
+            this.updateOrder.Click += new System.EventHandler(this.UpdateOrder_Click);
             // 
             // panel3
             // 
