@@ -39,6 +39,11 @@ namespace StoreApp_DB_
             Close();
         }
 
+        private void addButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void HandleOperationResult(int errorCode)
         {
             switch ((OrderOperationResult)errorCode)
@@ -87,9 +92,5 @@ namespace StoreApp_DB_
             }
         }
 
-        private void addButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
