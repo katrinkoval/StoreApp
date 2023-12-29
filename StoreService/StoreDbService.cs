@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Models;
+using DataAccessLevel;
 
-namespace DataAccessLevel
+namespace StoreService
 {
-    public class StoreDB : IDisposable
+    public class StoreDbService : IDisposable, IStoreService
     {
         private SqlConnection _connection;
         private bool _alreadyDisposed;
 
         private const string DB_NAME = "Store";
 
-        public StoreDB(string servername, string login, string password)
+        public StoreDbService(string servername, string login, string password)
         {
             InitializeConnection(servername, login, password);
         }
 
-        public StoreDB()
+        public StoreDbService()
         {
             _connection = null;
         }
@@ -39,7 +40,7 @@ namespace DataAccessLevel
         {
             if (_alreadyDisposed)      
             {
-                throw new ObjectDisposedException(nameof(StoreDB));
+                throw new ObjectDisposedException(nameof(StoreDbService));
             }
             if(_connection.State == System.Data.ConnectionState.Closed)
             {
@@ -51,7 +52,7 @@ namespace DataAccessLevel
         {
             if (_alreadyDisposed)       
             {
-                throw new ObjectDisposedException(nameof(StoreDB));
+                throw new ObjectDisposedException(nameof(StoreDbService));
             }
 
             if(_connection == null && servername != null  && login != null && password != null)
@@ -73,7 +74,7 @@ namespace DataAccessLevel
         {
             if (_alreadyDisposed)
             {
-                throw new ObjectDisposedException(nameof(StoreDB));
+                throw new ObjectDisposedException(nameof(StoreDbService));
             }
 
             if (_connection.State == System.Data.ConnectionState.Open)
@@ -96,7 +97,7 @@ namespace DataAccessLevel
             GC.SuppressFinalize(this);
         }
 
-        ~StoreDB()
+        ~StoreDbService()
         {
             if (_alreadyDisposed || _connection == null)
             {

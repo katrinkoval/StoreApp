@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
@@ -13,7 +13,7 @@ namespace StoreApp_DB_
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (StoreDB storeDB = new StoreDB())
+            using (IStoreService storeDB = new StoreDbService())
             {
                 Application.Run(new MainForm(storeDB));
             }

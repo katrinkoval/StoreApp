@@ -2,15 +2,15 @@
 using System.Windows.Forms;
 using StoreApp_DB_.Enums;
 using Models;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class MainForm : Form
     {
-        private readonly StoreDB _storeDB;
+        private readonly IStoreService _storeDB;
         
-        public MainForm(StoreDB storeDB)
+        public MainForm(IStoreService storeDB)
         {
             _storeDB = storeDB;
             TotalPriceChangeManager.EventHandler = new TotalPriceChangeManager.TotalPriceChanged(TotalPriceChangedEventHandler);

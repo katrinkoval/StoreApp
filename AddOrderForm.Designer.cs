@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace StoreApp_DB_
 {
     partial class AddOrderForm
@@ -87,6 +89,7 @@ namespace StoreApp_DB_
             this.addButton.TabIndex = 21;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // cancelButton
             // 

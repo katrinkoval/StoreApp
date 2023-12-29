@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace StoreApp_DB_
+namespace StoreService
 {
     public static class TotalPriceChangeManager
     {

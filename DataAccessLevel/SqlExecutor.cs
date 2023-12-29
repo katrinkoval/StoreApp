@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace DataAccessLevel
 {
-    class SqlExecutor<TEntity, TEntityIO> where TEntityIO: ISqlObject<TEntity>, new()
+    public class SqlExecutor<TEntity, TEntityIO> where TEntityIO: ISqlObject<TEntity>, new()
     {
         private readonly SqlConnection _connection;
 

@@ -1,11 +1,11 @@
 ﻿using System;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class UpdateConsignmentForm : OperationWithConsignmentForm
     {
-        public UpdateConsignmentForm(StoreDB storeDB, int number, DateTime date
+        public UpdateConsignmentForm(IStoreService storeDB, int number, DateTime date
                                             , string supplierName, string recipientName)
                : base(date, QueryType.Update, storeDB)
         {

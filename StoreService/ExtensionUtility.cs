@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Models;
 
-namespace StoreApp_DB_
+
+namespace StoreService
 {
     public static class ExtensionUtility
     {

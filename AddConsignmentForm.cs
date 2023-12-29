@@ -1,11 +1,11 @@
 ﻿using System;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class AddConsignmentForm : OperationWithConsignmentForm
     {
-        public AddConsignmentForm(StoreDB storeDB)
+        public AddConsignmentForm(IStoreService storeDB)
             : base(DateTime.Now, QueryType.Add, storeDB)
         {
             InitializeComponent();

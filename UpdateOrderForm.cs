@@ -2,17 +2,17 @@
 using System.Windows.Forms;
 using Models;
 using StoreApp_DB_.Enums;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class UpdateOrderForm : Form
     {
-        private readonly StoreDB _storeDB;
+        private readonly IStoreService _storeDB;
         private readonly int _consNumber;
         private readonly string _productName;
 
-        public UpdateOrderForm(StoreDB storeDB, int consNumber, string prodName, double amount, string unitType)
+        public UpdateOrderForm(IStoreService storeDB, int consNumber, string prodName, double amount, string unitType)
         {
             _storeDB = storeDB;
             _consNumber = consNumber;
