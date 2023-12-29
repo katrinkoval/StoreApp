@@ -1,6 +1,5 @@
 ﻿
-
-namespace StoreApp_DB_
+namespace StoreService
 {
     public enum PriceChanging
     {

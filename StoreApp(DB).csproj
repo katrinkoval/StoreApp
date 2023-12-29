@@ -76,7 +76,6 @@
     <Compile Include="Enums\ConsignmentOperationResult.cs" />
     <Compile Include="Enums\DeletionResult.cs" />
     <Compile Include="Enums\OrderOperationResult.cs" />
-    <Compile Include="ExtensionUtility.cs" />
     <Compile Include="OperationWithConsignmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,11 +88,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enums\PriceChanging.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\QueryType.cs" />
-    <Compile Include="TotalPriceChangeManager.cs" />
     <Compile Include="UpdateConsignmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,13 +154,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="DataAccessLevel\DataAccessLevel.csproj">
-      <Project>{a40f50a7-db63-4589-b31d-15f6d0b1e036}</Project>
-      <Name>DataAccessLevel</Name>
-    </ProjectReference>
     <ProjectReference Include="Models\Models.csproj">
       <Project>{59af204f-4dfc-4c95-b33f-b89ef7f24745}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="StoreService\StoreService.csproj">
+      <Project>{37e5c019-3696-4ee5-aa9a-6ae8d6205ee6}</Project>
+      <Name>StoreService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

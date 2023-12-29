@@ -4,7 +4,7 @@ using System.Data;
 
 namespace DataAccessLevel
 {
-    class ConsignmentIO : ISqlObject<Consignment>
+    public struct ConsignmentIO : ISqlObject<Consignment>
     {
         public Consignment ReadFromRecord(IDataRecord reader)
         {

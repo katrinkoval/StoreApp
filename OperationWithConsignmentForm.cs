@@ -3,16 +3,16 @@ using System.Drawing;
 using System.Windows.Forms;
 using Models;
 using StoreApp_DB_.Enums;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class OperationWithConsignmentForm : Form
     {
         protected bool _isUsingIPN;
-        protected StoreDB _storeDB;
+        protected IStoreService _storeDB;
 
-        public OperationWithConsignmentForm(DateTime consigmentDate, QueryType option, StoreDB storeDB)
+        public OperationWithConsignmentForm(DateTime consigmentDate, QueryType option, IStoreService storeDB)
             :base()
         {
             InitializeComponent();

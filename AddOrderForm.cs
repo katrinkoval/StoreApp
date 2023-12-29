@@ -2,16 +2,16 @@
 using System.Windows.Forms;
 using Models;
 using StoreApp_DB_.Enums;
-using DataAccessLevel;
+using StoreService;
 
 namespace StoreApp_DB_
 {
     public partial class AddOrderForm : Form
     {
 
-        private readonly StoreDB _storeDB;
+        private readonly IStoreService _storeDB;
 
-        public AddOrderForm(StoreDB storeDB, int consNumber)
+        public AddOrderForm(IStoreService storeDB, int consNumber)
         {
             _storeDB = storeDB;
 
@@ -87,5 +87,9 @@ namespace StoreApp_DB_
             }
         }
 
+        private void addButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
