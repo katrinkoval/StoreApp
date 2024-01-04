@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using Models;
 using StoreApp_DB_.Enums;
 using StoreService;
+using ModelsDTO;
 
 namespace StoreApp_DB_
 {

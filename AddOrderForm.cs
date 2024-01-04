@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Models;
+using ModelsDTO;
 using StoreApp_DB_.Enums;
 using StoreService;
 
@@ -39,8 +39,29 @@ namespace StoreApp_DB_
             Close();
         }
 
+       
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(numberComboBox.SelectedItem.ToString())
+                            || string.IsNullOrWhiteSpace(productIDComboBox.SelectedItem.ToString())
+                                || string.IsNullOrWhiteSpace(amountTextBox.Text))
+            {
+                MessageBox.Show("All fields must be filled");
+            }
+
+            int number = int.Parse(numberComboBox.SelectedItem.ToString());
+
+            string selectedProduct = productIDComboBox.SelectedItem.ToString();
+
+            string prodName = selectedProduct.Substring(0, selectedProduct.IndexOf(" "));
+
+            long productID = _storeDB.GetProductID(prodName);
+
+            double amount = double.Parse(amountTextBox.Text);
+
+            int result = _storeDB.AddOrder(number, productID, amount);
+
+            HandleOperationResult(result);
 
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Models;
+using ModelsDTO;
 using StoreApp_DB_.Enums;
 using StoreService;
 

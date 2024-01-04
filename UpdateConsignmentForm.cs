@@ -12,6 +12,7 @@ namespace StoreApp_DB_
             InitializeComponent();
 
             numberTextBox.Text = number.ToString();
+            numberTextBox.Enabled = false;
             dateTimePicker.Value = date;
 
             supplierNameComboBox.Text = supplierName;

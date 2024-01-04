@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreService", "StoreService\StoreService.csproj", "{37E5C019-3696-4EE5-AA9A-6AE8D6205EE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelsDTO", "ModelsDTO\ModelsDTO.csproj", "{38D0E455-A936-4467-A054-A57D8AB37A2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{37E5C019-3696-4EE5-AA9A-6AE8D6205EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37E5C019-3696-4EE5-AA9A-6AE8D6205EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37E5C019-3696-4EE5-AA9A-6AE8D6205EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D0E455-A936-4467-A054-A57D8AB37A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D0E455-A936-4467-A054-A57D8AB37A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D0E455-A936-4467-A054-A57D8AB37A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D0E455-A936-4467-A054-A57D8AB37A2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

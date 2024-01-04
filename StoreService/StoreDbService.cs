@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Models;
+using ModelsDTO;
 using DataAccessLevel;
 
 namespace StoreService

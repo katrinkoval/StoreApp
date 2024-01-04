@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{37E5C019-3696-4EE5-AA9A-6AE8D6205EE6}</ProjectGuid>
+    <ProjectGuid>{38D0E455-A936-4467-A054-A57D8AB37A2A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StoreService</RootNamespace>
-    <AssemblyName>StoreService</AssemblyName>
+    <RootNamespace>ModelsDTO</RootNamespace>
+    <AssemblyName>ModelsDTO</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,23 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionUtility.cs" />
-    <Compile Include="IStoreService.cs" />
-    <Compile Include="Exceptions\SqlConnectionException.cs" />
-    <Compile Include="Enums\PriceChanging.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Consignment.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StoreDbService.cs" />
-    <Compile Include="TotalPriceChangeManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccessLevel\DataAccessLevel.csproj">
-      <Project>{a40f50a7-db63-4589-b31d-15f6d0b1e036}</Project>
-      <Name>DataAccessLevel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelsDTO\ModelsDTO.csproj">
-      <Project>{38d0e455-a936-4467-a054-a57d8ab37a2a}</Project>
-      <Name>ModelsDTO</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Models;
+using ModelsDTO;
 
 namespace DataAccessLevel
 {

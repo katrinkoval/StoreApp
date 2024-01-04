@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using StoreApp_DB_.Enums;
-using Models;
+using ModelsDTO;
 using StoreService;
 
 namespace StoreApp_DB_
@@ -193,6 +193,11 @@ namespace StoreApp_DB_
 
         private void UpdateOrder_Click(object sender, EventArgs e)
         {
+            if (dvgOrders.Rows.Count == 0)
+            {
+                return;
+            }
+
             int number = int.Parse(dvgOrders.CurrentRow.Cells[0].Value.ToString());
             string productName = dvgOrders.CurrentRow.Cells[1].Value.ToString();
             double amount = double.Parse(dvgOrders.CurrentRow.Cells[3].Value.ToString());
